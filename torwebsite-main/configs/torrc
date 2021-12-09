@@ -1,0 +1,5 @@
+## see the content of the file ".../hidden_service/hostname" for the address to tell people
+HiddenServiceDir /var/lib/tor/hidden_service/
+
+## redirect requests on port x to the address y:z
+HiddenServicePort 80 127.0.0.1:80
