@@ -1,0 +1,46 @@
+#!/bin/bash
+echo ""
+echo""
+clear
+echo""
+echo -e "\e[1;96m===================================================== > > >\e[m "
+echo " "
+printf "\e[1;31m[\e[0m\e[1;92m01\e[0m\e[1;31m] \e[0m\e[1;37;44m Termux \e[0m  "  
+echo
+printf "\e[1;31m\e[0m\e[1;92m\e[0m\e[1;31m \e[0m\e[1;37;44m\e[0m"     
+echo
+printf "\e[1;31m[\e[0m\e[1;92m02\e[0m\e[1;31m] \e[0m\e[1;37;41m Linux \e[0m   "  
+echo
+printf "\e[1;31m\e[0m\e[1;92m\e[0m\e[1;31m \e[0m\e[1;37;44m\e[0m"
+echo " "
+echo -e "\e[1;96m===================================================== > > >\e[m "
+echo ""
+echo ""
+read -p $'\e[1;40m\e[31m[\e[32m*\e[31m]\e[32m You Want to Choose System : \e[1;91m (1/2)  : \e[0m' option
+echo""
+echo""
+echo""
+if [[ $option == *'1'* ]]; then
+echo""
+clear
+termux-setup-storage
+cd captured_files/new
+mkdir /sdcard/OnlineHacKing
+mv *.png /sdcard/OnlineHacKing
+echo -e "\e[1;96m Open Fils Manager & Chack OnlineHacKing Folder > > >\e[m "
+
+fi
+if [[ $option == *'2'* ]]; then
+echo""
+clear
+cd captured_files/new
+mv *.png /root/Desktop/
+echo -e "\e[1;96m Chack Desktop Folder > > >\e[m "
+
+fi
+
+
+
+
+echo
+© 2021 GitHub, In
