@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name[C]=DirAttack
+Name=DirAttack
+Exec=sh -c "dirattack --help;${SHELL:-bash}"
+Icon=/usr/share/icons/dirattack.png
+Encoding=UTF-8
+StartupNotify=false
+Terminal=true
+Type=Application
