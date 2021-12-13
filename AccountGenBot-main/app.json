@@ -1,0 +1,50 @@
+{
+  "name": "Account Gen Bot",
+  "description": "A Account Gen Bot In Telethon.",
+  "logo": "https://cdn.dribbble.com/users/6823/screenshots/2211533/ag-logo.png?compress=1&resize=800x600",
+  "keywords": [
+    "telegram",
+    "account",
+    "plugin",
+    "telegram-bot",
+    "productivity"
+  ],
+  "repository": "https://github.com/DevsExpo/AccountCheckerBot",
+  "website": "starkgang.ml",
+  "success_url": "t.me/FridayOT",
+  "env": {
+    "ENV": {
+      "description": "Setting this to ANYTHING will enable heroku.",
+      "value": "ANYTHING"
+    },
+    "BOT_TOKEN": {
+      "description": "Your Bot Token.",
+      "value": ""
+    },
+    "API_ID": {
+      "description": "Get this value from my.telegram.org! Please do not steal",
+      "value": ""
+    },
+    "OWNER_ID": {
+      "description": "Bot Owner ID",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org! Please do not steal",
+      "value": ""
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "12"
+      }
+    }
+  ]
+}

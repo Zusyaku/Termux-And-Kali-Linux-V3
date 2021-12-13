@@ -1,0 +1,7 @@
+telethon
+cryptg
+requests
+apscheduler
+sqlalchemy>=1.2
+psycopg2-binary
+pymongo
