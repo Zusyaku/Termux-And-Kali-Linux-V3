@@ -1,0 +1,9 @@
+pkg install coreutils
+pkg install gawk
+pkg install sed
+pkg install ruby
+pkg install python
+pip install httpie
+gem install lolcat
+pkg install ncurses-utils
+

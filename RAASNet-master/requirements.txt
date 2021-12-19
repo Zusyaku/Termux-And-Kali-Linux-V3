@@ -1,0 +1,12 @@
+numpy==1.19.3
+pymsgbox
+pyaes
+pyotp
+pypng
+pyqrcode
+pycryptodome
+pyinstaller
+requests
+python-geoip-python3
+python-geoip-geolite2
+pillow
