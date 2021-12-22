@@ -1,0 +1,47 @@
+<?php
+
+echo "<style type=\"text/css\">
+.entryfield {width:600px;height:300px;}
+.subbtn {background:#b70505;color:white;border: 1px solid #000; padding:6px 6px 6px 6px;}
+.subbtn:hover {background:#c0bfbf;color:#b70505;}
+</style>
+<h1>Kurosaki's Mass Shell Checker</h1>
+<form name=\"frmcontadd\" action=\"\" method=\"post\">
+
+  <textarea class=\"entryfield\" name=\"url\" cols=115 rows=10></textarea><br>
+  <input class=\"subbtn\" type=\"submit\" name=\"Submit\" value=\"Check Shell(s)\">
+
+</form>";
+
+function get_http_response_code($theurl) {
+    $headers = get_headers($theurl);
+    $status = substr($headers[0], 9, 3);
+    $p = parse_url( $theurl );
+    $host = explode(':', $p['host']);
+    $hostname = $host[0]; 
+    if($status == 200){$visitor = $_SeRVeR["RemOTe_aDDR"];
+        echo "<strong><font color=Green>Good</font></strong> - <a href=\"".$theurl."\" target=_blank>".$theurl."</a><br />";
+    }elseif($status == 500){ 
+        echo "<strong><font color=black>".$status." Internal Server Error</font></strong> - <a href=\"".$theurl."\" target=_blank>".$theurl."</a><br />"; 
+    }else{
+        $writeuRl = $theurl."\r\n";
+        $fh=fopen("bad.txt","a");
+        fwrite($fh,$writeuRl,strlen($writeuRl));
+        echo "<strong><font color=red>Bad</font></strong> - <a href=\"".$theurl."\" target=_blank>".$theurl."</a><br />"; 
+    }
+}
+
+if (isset($_POST['Submit'])) {
+  $hosts = explode("\r\n", $_POST['url']);
+  // let's create the iNSeRT query
+  $values = array();
+  foreach ($hosts as $host) {
+
+  if($host != ""){
+    @get_http_response_code("$host");
+  }
+}
+
+echo "<br /><strong>Shell Checking Finished</strong>";
+}
+?>

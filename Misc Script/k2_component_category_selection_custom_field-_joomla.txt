@@ -1,0 +1,130 @@
+<?php
+/*------------------------------------------------------------------------
+# k2cat.php - System - Next Previous Article
+# ------------------------------------------------------------------------
+# author    Codeboxr Team
+# copyright Copyright (C) 2010-2013 codeboxr.com. All Rights Reserved.
+# @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+# Websites: http://codeboxr.com
+# Technical Support:  Forum -   http://codeboxr.com/product/show-next-previous-article-plugin-for-joomla  
+-------------------------------------------------------------------------*/
+ 
+// no direct access
+defined('_JEXEC') or die('Restricted access');
+
+if(version_compare(JVERSION,'3.0.0','ge')):
+    jimport('joomla.form.formfield');
+    class JFormFieldK2cat extends JFormField {
+
+            protected $type = 'k2cat';
+
+            public function getInput(){
+                //$this->name, $this->value, $this->element, $this->options['control']
+                //var_dump($this);
+                //$value = 
+                $db = JFactory::getDBO();
+                if(JFile::exists(JPATH_ROOT.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_k2'.DIRECTORY_SEPARATOR.'k2.php')):
+                    $query = 'SELECT m.* FROM #__k2_categories m WHERE published=1 AND trash = 0 ORDER BY parent, ordering';
+                    $db->setQuery( $query );
+                    $mitems = $db->loadObjectList();
+                    //var_dump($mitems);
+                    $children = array();
+                    if ($mitems){
+                        foreach ( $mitems as $v ){
+                            if(K2_JVERSION != '16'){
+                                    $v->title = $v->name;
+                                    $v->parent_id = $v->parent;
+                            }
+                            $pt = $v->parent;
+                            $list = @$children[$pt] ? $children[$pt] : array();
+                            array_push( $list, $v );
+                            $children[$pt] = $list;
+                        }
+                    }
+                    $list = JHTML::_('menu.treerecurse', 0, '', array(), $children, 9999, 0, 0 );
+                    $mitems = array();
+
+                    foreach ( $list as $item ) {
+                        $item->treename = JString::str_ireplace('&#160;', '- ', $item->treename);
+                        $mitems[] = JHTML::_('select.option',  $item->id, '   '.$item->treename );
+                    }                
+                
+                
+
+                $fieldName = $this->name.'[]';
+
+
+                //$doc->addScriptDeclaration($js);
+                $output = JHTML::_('select.genericlist',  $mitems, $fieldName, 'class="inputbox" style="width:220px;" multiple="multiple" size="10"', 'value', 'text', $this->value );
+                return $output;
+                
+              endif;
+               return;
+                //return JElementK2cat::fetchElement($this->name, $this->value, $this->element, $this->options['control']);
+          }
+    }
+else:    
+    if(version_compare(JVERSION,'1.6.0','ge')) {
+            jimport('joomla.form.formfield');
+            class JFormFieldK2cat extends JFormField {
+
+                    var	$type = 'k2cat';
+
+                    function getInput(){
+                            return JElementK2cat::fetchElement($this->name, $this->value, $this->element, $this->options['control']);
+                    }
+            }
+    }
+
+    jimport('joomla.html.parameter.element');
+
+    class JElementK2cat extends JElement
+    {
+
+            var	$_name = 'k2cat';
+
+            function fetchElement($name, $value, &$node, $control_name){
+
+                    $db = JFactory::getDBO();
+                    
+                    if(JFile::exists(JPATH_ROOT.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_k2'.DIRECTORY_SEPARATOR.'k2.php')):                        
+                        $query = 'SELECT m.* FROM #__k2_categories m WHERE published=1 AND trash = 0 ORDER BY parent, ordering';
+                        $db->setQuery( $query );
+                        $mitems = $db->loadObjectList();
+                        $children = array();
+                        if ($mitems){
+                            foreach ( $mitems as $v ){
+                                //if(K2_JVERSION != '16'){
+                                        $v->title = $v->name;
+                                        $v->parent_id = $v->parent;
+                                //}
+                                $pt = $v->parent;
+                                $list = @$children[$pt] ? $children[$pt] : array();
+                                array_push( $list, $v );
+                                $children[$pt] = $list;
+                            }
+                        }
+                        $list = JHTML::_('menu.treerecurse', 0, '', array(), $children, 9999, 0, 0 );
+                        $mitems = array();
+
+                        foreach ( $list as $item ) {
+                            $item->treename = JString::str_ireplace('&#160;', '- ', $item->treename);
+                            $mitems[] = JHTML::_('select.option',  $item->id, '   '.$item->treename );
+                        }                       
+                    
+                    
+                    if(version_compare(JVERSION,'1.6.0','ge')) {
+                        $fieldName = $name.'[]';
+                    }
+                    else {
+                        $fieldName = $control_name.'['.$name.'][]';
+                    }
+
+                    $output= JHTML::_('select.genericlist',  $mitems, $fieldName, 'class="inputbox" style="width:90%;" multiple="multiple" size="10"', 'value', 'text', $value );
+                    return $output;
+                    
+                endif;
+                    return;
+            }
+    }
+endif;

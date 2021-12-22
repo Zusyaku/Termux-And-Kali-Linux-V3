@@ -1,0 +1,22 @@
+<?php
+
+
+
+$file = file_get_contents('http://www.aq.com/aw-character.asp?id=lamp', true);
+
+
+if (strpos($file,'Character not Found') !== false) {
+
+echo "LAMP IS AVAILABLE!!!";
+echo "<audio controls autoplay loop><source src='http://soundjax.com/reddo/97744%5EALARM.mp3' type='audio/mpeg'></audio>";
+
+}
+
+else
+{
+echo "Not ready yet :/";
+}
+
+
+  
+?>

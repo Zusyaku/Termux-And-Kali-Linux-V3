@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>AnonyMailer</title>
+</head>
+<body bgcolor="#eaeaea">
+<font color="#ff00fa" face="Tahoma" size="7"><u>AnonyMailer</u></font>
+<br /><br />
+<?php
+
+/*==========================*\
+| @title: PHP AnonyMailer    |
+| @version: fukken stable    |
+| @author: InfamousBytes     |
+| @modified: Jan. 01, 2009   |
+| @shouts: malvager.com      |
+|          hackforums.net    |
+\*==========================*/
+
+// Make access to the inputs less annoying
+extract($_POST);
+
+// Check inputs
+if (isset($to) && isset($from) && isset($subj) && isset($msg) && isset($send))
+{
+	// If a reply-to address hasn't been specified
+	if (!isset($replyto))
+	{
+		// Send mail or display error
+		mail($to,$subj,$msg,'From: '.$from) or die('Mail could not be sent. <a href="?">Back</a>.');
+		echo('Mail sent. <a href="?">Back</a>.');
+	// If a reply-to has been specified
+	} else {
+		// Send mail or display error
+		mail($to,$subj,$msg,'From: '.$from."\r\n".'Reply-To: '.$replyto) or die('Mail could not be sent. <a href="?">Back</a>.');
+		echo('Mail sent. <a href="?">Back</a>.');
+	}
+} else {
+	// Fukken write the form
+	echo('<form action="" method="post">To: <input type="text" name="to" /><br />From: <input type="text" name="from"><br />Reply-To (OPTIONAL): <input type="text" name="replyto" /><br />Subject: <input type="text" name="subj" /><br />Message:<br /><textarea name="msg" rows="5" cols="60"></textarea><br /><input type="submit" name="send" value="Send EMail" />');
+}
+
+?>
+</body>
+</html>

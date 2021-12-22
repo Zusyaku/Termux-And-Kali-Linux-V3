@@ -1,0 +1,54 @@
+<?php
+
+function badHosts($theirIP)
+{
+  $badHosts = array('servinio.com', 'turnkeyinternet.net', 'kimsufi.com', 'steephost.com', 'starnet.md', 'asianet.co.th', 
+  'bezeqint.net', '.server.de', 'ertelecom.ru', 'hostnoc.net', 'dedibox.fr', 'dimenoc.com', 'ukrtel.net', 'ubiquityservers.com');
+  
+  $theirHost = gethostbyaddr($theirIP);
+  
+  foreach($badHosts as $badHost)
+  {
+    if(strpos($theirHost, $badHost) !== false)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+function badBrowsers()
+{
+  $badBrowsers = array('Opera/9.80', 'bork-edition', 'Chrome/13.0.782.112', 'Firefox/4', 'Firefox/5', 'Firefox/13.0.1', ' MRA ', 'App3leWebKit');    
+  
+  foreach($badBrowsers as $badBrowser)
+  {
+    if(strpos($_SERVER['HTTP_USER_AGENT'], $badBrowser) !== false)
+    {
+      return true;
+    }
+  }
+  return false;
+}
+
+// TOR exit point detection function from http://www.irongeek.com/i.php?page=security/detect-tor-exit-node-in-php
+// This will be under EXTREME header check setting with a warning it could block legitimate users
+
+function IsTorExitPoint($theirIP)
+{
+  if (gethostbyname(ReverseIPOctets($theirIP) . '.' . $_SERVER['SERVER_PORT'] . '.' . ReverseIPOctets($_SERVER['SERVER_ADDR']) . '.ip-port.exitlist.torproject.org') == '127.0.0.2') 
+  {
+    return true;
+  } 
+  else 
+  {
+    return false;
+  } 
+}
+
+function ReverseIPOctets($inputIP)
+{
+  $ipoc = explode('.', $inputIP);
+  return $ipoc[3] . '.' . $ipoc[2] . '.' . $ipoc[1] . '.' . $ipoc[0];
+}
+?>

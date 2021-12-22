@@ -1,0 +1,54 @@
+<?php
+function ascii($archivo, $espaciado = 0, $tamano = 1, $caracter = '@')
+{
+  //Configuración
+  $maxx = 501; //Súmele 1 al máximo deseado.
+  $maxy = 501; //Súmele 1 al máximo deseado.
+  $maxsize = 999999; //5120; //En bytes
+  //Fin de configuración
+  
+  $img_size = @getimagesize($archivo);
+  
+  if ($img_size['mime'] == "image/jpeg")
+  { $origen = @imagecreatefromjpeg($archivo); } 
+  elseif ($img_size['mime'] == "image/png")
+  { $origen = @imagecreatefrompng($archivo); } 
+  elseif ($img_size['mime'] == "image/gif")
+  { $origen = @imagecreatefromgif($archivo); }
+  else { $origen = @imagecreatefromwbmp($archivo); }
+  
+  if ($img_size[0] < $maxx || $img_size[1] < $maxy)
+  {
+    if (filesize($archivo) < $maxsize)
+    {
+      if ($origen)
+      {
+	    $GLOBALS['ascii_seguir'] = 1;
+        $html = '<head><title>ASCII Art by Ibot</title></head><body><center><span style="letter-spacing: '.$espaciado.'px; line-height: '.(($espaciado > 0) ? ($espaciado*2) : 1).'px; font-size: '.$tamano.'px; font-family: Courier New, Courier, monospace;">';
+        
+        for ($y = 1; $y<$img_size[1]; $y++)
+        {
+          for ($x = 1; $x<$img_size[0]; $x++)
+          {
+            $rgb = imagecolorat($origen, $x, $y);
+            $pixel_color = sprintf( "%06X", $rgb );
+            $html .= '<span style="color: #'.$pixel_color.';">'.$caracter.'</span>';
+          }
+          $html .= '<br />';
+        }
+        
+        $html .= '</div></center></body>';
+        
+        imagedestroy($origen);
+        return $html;
+      }
+      else
+      { $GLOBALS['ascii_seguir'] = 4; }
+	}
+    else
+    { $GLOBALS['ascii_seguir'] = 3; }
+  }
+  else
+  { $GLOBALS['ascii_seguir'] = 2; }
+}
+?>
