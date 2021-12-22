@@ -1,0 +1,11 @@
+
+RELEASE NOTE 
+===============
+
+Why upgrade to 0.0.2 ?
+- The version 0.0.1 covers only 1.x and 1.5.x to 1.5.9.
+- Fix database information to be more accurate
+- Most parts of vulnerability detection code are rewritten to provide you 
+  the most accurate information.
+ 
+ 
