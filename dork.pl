@@ -1,53 +1,40 @@
-#!/usr/bin/perl -w
-#Dork Scann
-#By
-#Senhor Li
- 
- use LWP::UserAgent; 
- 
-print q{
-+----------------------[Dork Scan]----------------------+
-|                                                       |
-|                      By Senhor Li                     |
-|                      By MrBlackx                      |
-|                         v1.6                          |
-+-------------------------------------------------------+
- 
-};
-print "\nPut Your Dork:";
-print "\n(Ex: inurl:home.php?id= )\n";
-print "=>";
-$dork = <STDIN>; 
-chomp($dork); 
- 
-print "Scan Started!";
- 
-for ($i = 0; $i < 1000; $i += 10) { 
- 
-$b = LWP::UserAgent->new(agent => 'Mozilla/4.8 [en] (Windows NT 6.0; U)'); 
-$b->timeout(30); 
-$b->env_proxy; 
-$c = $b->get('http://www.bing.com/search?q=' . $dork . '&first=' . $i . '&FORM=PERE')->content; 
-$check = index($c, 'sb_pagN'); 
+#!/usr/bin/perl
 
-while (1) { 
-$n = index($c, '<h3><a href="'); 
+use LWP::Simple;
+use LWP::UserAgent;
+use HTTP::Request;
 
-if ($n == -1) { 
-last; 
-} 
-
-print "$s\n";
-$c = substr($c, $n + 13); 
-$s = substr($c, 0, index($c, '"'));
-open(txt,">>scanned.txt"); 
-print txt $s,"\n"; 
-close(txt);
-
-} 
-if ($check == -1) { 
-last; 
-} 
-}
-print "Scan Finalizado!";
-exit;
+print "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+\n";
+print "+          PHP Shell Scanner          +\n";
+print "+      Coded by Erm... AKA H4k3r      +\n";
+print "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+";
+print "\nInsert Shell Finding Dork > ";
+chomp($dork = <STDIN>);
+print "\nTotal Query Pages 10 Links/Page > ";
+chomp($page = <STDIN>);
+print "\n[+]@#~Result~#@[+]\n\n";
+for ($start = 0;$start != $page*10;$start += 10)
+   {
+   $search = "http://www.google.com/search?hl=en&q=".$dork."&btnG=Search&start=".$start;
+   $ua = LWP::UserAgent->new(agent => 'Mozilla 5.0');
+   $resp = $ua->get($search);
+   if ($resp -> is_success)
+      {
+      $cont = $resp -> content;
+      @linkz0r = split (/<a href=/, $cont);
+      foreach $line(@linkz0r)
+         {
+         if ($line =~ /(.*) class=l/ig)
+            {
+            $click = $1;
+            $ua = LWP::UserAgent->new(agent => 'Mozilla 5.0');
+            $resp = $ua -> get($click);
+            $shelld0m = $resp->content();
+            if ($shelld0m =~m/uname -a/)
+               {
+               print "$click has a shell present\n";
+               }
+            }
+         }
+      }
+   }

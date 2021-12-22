@@ -1,0 +1,47 @@
+#! /usr/bin/perl
+#################
+# Name: sploits_looker
+# Beschreibung: Milw0rm New Exploits Checker
+# Coder: Perforin
+# Sites: dark-codez.org / perforins-software.dl.am
+#################
+use LWP::UserAgent;
+
+print qq "
+   ++++++++++++++++++
+   | Sploits_looker |
+   ++++++++++++++++++
+   |   by Perforin  |
+   ++++++++++++++++++
+   |   Dark-Codez   |
+   |                |
+   |    The dark    |
+   | side of coding |
+   ++++++++++++++++++
+";
+@sploits = ();
+$version = 1.0;
+$getit = 'http://milw0rm.com/rss.php'; # Master Server
+$agent = new LWP::UserAgent;
+$request = HTTP::Request->new('GET',$getit);
+$result = $agent->request($request);
+$getit =~ s/.*\///;
+@result = $result->content();
+open(RES,">","mille.txt");
+print RES @result;
+close(RES);
+open(RES,"<","mille.txt");
+@inhalt = <RES>;
+close(RES);
+unlink ("mille.txt");
+foreach $shit (@inhalt) {
+$shit =~ tr/</ /;
+$shit =~ tr/>/ /;
+$shit =~ tr/\// /;
+$shit =~ s/milw0rm.com//ig;
+if ($shit =~ m/title/i) {
+$shit =~ s/title/ /ig;
+push(@sploits,"$shit");
+}
+}
+print @sploits;
