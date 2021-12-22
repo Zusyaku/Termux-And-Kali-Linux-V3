@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>320</width>
+    <height>240</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VipVince - Dox Tool</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="imageLabel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>320</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>image.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nameEdit">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>106</y>
+      <width>265</width>
+      <height>27</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="nameLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="infoCombo">
+    <property name="geometry">
+     <rect>
+      <x>55</x>
+      <y>135</y>
+      <width>265</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <item>
+     <property name="text">
+      <string>FaceBook</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Twitter</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>MySpace</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bebo</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tagged</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Pipl</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Soundcloud</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Pictures</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Home Address</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Phone No</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Marriage Records</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Criminal Records</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Skype Resolve</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Email Search</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="infoLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>40</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Info:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>180</y>
+      <width>321</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="doxButton">
+       <property name="text">
+        <string>Dox</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quitButton">
+       <property name="text">
+        <string>Quit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>320</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
