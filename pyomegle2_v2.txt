@@ -1,0 +1,173 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jul 04 11:44:01 2013
+
+@author: Gabriel (aka dberube4)
+
+PyOmegle is a multithreaded omegle client written in python.
+"""
+from threading import Thread
+from random import randint
+import urllib2, ast
+    
+
+class Session(Thread):
+    '''Represents an omegle session.'''
+    
+    headers = {}
+    headers['User-Agent']='Mozilla/5.0 (Windows NT 6.1; WOW64; rv:7.0.1)'+\
+                          'Gecko/20100101 Firefox/7.0'
+    headers['Accept']='text/html,application/xhtml+xml,application/xml;'+\
+                      'q=0.9,*/*;q=0.8'
+    headers['Accept-Language']='en-us;q=0.8,en;q=0.5'
+    headers['X-Moz']='prefetch'
+    headers['Accept-Charset']='ISO-8859-1,utf-8;q=0.7,*;q=0.7'
+    headers['Referer']='http://www.reddit.com'
+    headers['Cache-Control']='no-cache, no-cache'
+    headers['Pragma']='no-cache'
+    
+    def __init__(self):
+        
+        super(Session, self).__init__()        
+        
+        self.url = ''
+        self.sessionID = -1
+        self.session_started = False
+        self.logs = '' 
+        
+        self.request_event = None
+        self.request_disconnect = None
+        self.request_typing = None
+        
+        self.stranger_typing = False
+        self.stranger_connected = False
+        
+    def run(self):
+        while True:
+            
+            if self.session_started == False:
+                break
+            
+            try:
+                rep = ast.literal_eval(urllib2.urlopen(self.request_event).read())
+            except ValueError:
+                #If the input was a malformed string.
+                break
+            
+            if rep[0][0] == "connected":
+                self.stranger_connected = True
+                self.strangerConnected()
+            
+            elif rep[0][0] == 'typing':
+                self.stranger_typing = True
+                self.strangerTyping()
+                
+            elif rep[0][0] == 'stoppedTyping':
+                self.stranger_typing = False
+                self.strangerStoppedTyping()
+                
+            elif rep[0][0] == 'gotMessage':
+                msg = rep[0][1]
+                self.stranger_typing = False
+                self.logs += msg+'/n'
+                self.messageReceived(msg)
+            
+            elif rep[0][0] == 'strangerDisconnected':
+                self.stranger_connected = False
+                self.stranger_typing = False
+                self.session_started = False
+                self.strangerDisconnected()
+                break
+            
+    
+    def startSession(self):
+        '''Start an omegle session'''
+        
+        #Get Session ID & start session
+        self.url = 'http://front{0}.omegle.com'.format(randint(1, 9))
+        data = '?rcs=1&firstevents=1&spid=&randid=NSPDU4AW&lang=en'
+        start_req = urllib2.Request(self.url+'/start'+data, headers = self.headers)
+        
+        self.sessionID = eval(urllib2.urlopen(start_req).read())["clientID"]
+            
+        self.session_started = True
+        
+        #Craft requests
+        idData = "id={0}".format(self.sessionID)
+        self.request_event = urllib2.Request(self.url+'/events', idData,
+                                             headers = self.headers)
+        
+        self.request_disconnect = urllib2.Request(self.url+'/disconnect', idData,
+                                             headers = self.headers)
+        
+        self.request_typing = urllib2.Request(self.url+'/typing', idData,
+                                             headers = self.headers)
+        
+        self.start()
+    
+    def sendMessage(self, message):
+        msgReq = urllib2.Request(self.url+'/send',
+                                 '&msg='+message+'&id='+self.sessionID,
+                                 headers = self.headers)
+        
+        urllib2.urlopen(msgReq)
+        
+        self.logs += message+'/n'
+
+    def logOut(self):
+        
+        if self.stranger_connected and self.session_started:
+            urllib2.urlopen(self.request_disconnect)
+            
+            self.stranger_typing = False
+            self.stranger_connected = False
+       
+    def sendTyping(self):
+        urllib2.urlopen(self.request_typing)
+    
+    
+    @staticmethod
+    def strangerTyping():
+        pass
+    
+    @staticmethod    
+    def strangerStoppedTyping():
+        pass
+    
+    @staticmethod
+    def strangerDisconnected():
+        pass
+    
+    @staticmethod
+    def strangerConnected():
+        pass
+    
+    @staticmethod
+    def messageReceived(msg):
+        pass
+        
+
+if __name__ == '__main__':
+    
+    session = Session()
+    session.daemon = True #Program exit when thread ends
+
+    #You can replace the session methods with your own!:
+    def replacement(msg): 
+        print("Handsome Stranger: {0}".format(msg))
+    session.messageReceived = replacement
+    
+    session.startSession()
+    
+    #Fully multithreaded!
+    while session.session_started:
+        msg = raw_input()
+        
+        if msg == 'getLogs':
+            print(session.logs)
+        
+        elif len(msg)>0 and msg != 'quit':
+            session.sendMessage(msg)
+            
+        elif msg == 'quit':
+            session.logOut()

@@ -1,0 +1,62 @@
+# -*- coding: utf8 -*-
+
+from pastebin_python import PastebinPython
+from pastebin_python.pastebin_constants import PASTE_PUBLIC, PASTE_UNLISTED, EXPIRE_NEVER
+from pastebin_python.pastebin_exceptions import PastebinBadRequestException, PastebinNoPastesException, PastebinFileException
+
+formats = []
+alias = {}
+fp = open(".wtfmt", "r")
+for l in fp:
+    l = l.lower().split()
+    cmd = l[0]
+    l = l[1:]
+    if cmd == "fmt" or cmd == "format":
+        formats += l
+    elif cmd == "alias":
+        if len(l) < 2:
+            continue
+        to = l[-1]
+        for k in l[:-1]:
+            alias[k] = to
+
+def get_format(fmt):
+    if len(fmt) == 0:
+        return "text"
+    fmt = fmt.lower()
+    if alias.has_key(fmt):
+        return alias[fmt]
+    try:
+        formats.index(fmt)
+        return fmt
+    except ValueError:
+        return False
+    raise Exception("unknow error while get_format()")
+
+def paste (filename, fmt = "", title = ""):
+    """
+        To create a pastebin post
+
+        -f <str>, --filename=<str> file to upload
+        -F <str>, --fmt=<str>      highlight format
+        -t <str>, --title=<str>    title for post
+    """
+    pbin = PastebinPython(api_dev_key = '0677588a45a2294ba210d1467cf230e7')
+    try:
+        gfmt = get_format(fmt)
+        if gfmt == False:
+            print "Error: unknow format \"%s\"" % fmt
+            return False
+        print "File: %s\nTitle: %s\nFormat: %s" % (filename, title, get_format(fmt))
+        print pbin.createPasteFromFile(filename, title, get_format(fmt), PASTE_PUBLIC, EXPIRE_NEVER)
+    except PastebinBadRequestException as e:
+        print e.message
+    except PastebinFileException as e:
+        print e.message
+    # except:
+    #     print "Failed"
+    #     return False
+    return True
+
+if __name__ == "__main__":
+    import clime.now
