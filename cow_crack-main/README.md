@@ -1,6 +1,6 @@
-# info
+# Cow Crack
 a tool to "crack" facebook account.
-# install
+# install packpages
 ```BASH
 pkg install git
 pkg install python
@@ -18,6 +18,14 @@ python setup.py build_ext --inplace
 # running
 ```BASH
 cd $HOME/cow_crack
+python run.py
+```
+# command buat update
+```BASH
+cd $HOME/cow_crack
+git pull
+rm -rf *.so
+python setup.py build_ext --inplace
 python run.py
 ```
 # license price information
@@ -40,3 +48,4 @@ python run.py
 <h1>credits</h1>
 <li>Yayan-XD and Friends. </li>
 <li>Tim offline python sukabumi</li>
+<p>Last update: 06, Febuari, 2022</p>
