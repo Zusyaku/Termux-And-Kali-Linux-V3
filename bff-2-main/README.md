@@ -1,21 +1,27 @@
 #### Link download termux : https://f-droid.org/repo/com.termux_117.apk
-## Installation
-$ pkg update && pkg upgrade <br>
-$ pkg install python2 <br>
-$ pkg install git <br>
-$ git clone https://github.com/Mark-Zuck/bff-2 <br>
-$ cd bff-2 <br>
-$ pip2 install -r requirements<br>
-$ python2 bff-2.py
+### Installation
+````
+pkg update && pkg upgrade -y
+pkg install python git -y
+pip install cython 
+````
+### Install git 
+````
+git clone https://github.com/Mark-Zuck/bff-2 
+````
+### Run script
+````
+cd $HOME/bff-2 
+python bff-2.py 
+````
 #
 #### Info Menu :<br>
-<img src="https://github.com/Mark-Zuck/bff-2/blob/main/ajg/IMG_20211222_164208.jpg" width="640" title="Menu" alt="Menu">
+<img src="https://github.com/Mark-Zuck/bff-/blob/main/__pycache__/IMG_20220224_151911.jpg" width="640" title="Menu" alt="Menu">
 
 #### Methode crack :
-• 1 Methode b-api (fast crack) <br>
-• 2 Methode graph (fast crack) <br>
-• 3 Methode mbasic (slow crack)<br>
-• 4 Methode mobile (very slow crack) <br>
+• 01 Methode b-api (fast crack) <br>
+• 02 Methode mbasic (slow crack)<br>
+• 03 Methode mobile (very slow crack)<br>
 #
 If you can't use this script or there is a bug in the script, please contact me
 #### contact me
