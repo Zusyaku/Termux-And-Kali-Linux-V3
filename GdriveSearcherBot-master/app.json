@@ -1,0 +1,41 @@
+{
+    "name": "Telegram Gdrive Search Bot",
+    "description": "A Telegram Gdrive Search Bot",
+    "keywords": [
+        "telegram",
+        "gdrive",
+        "search",
+        "bot"
+    ],
+    "repository": "https://github.com/AbirHasan2005/GdriveSearcherBot",
+    "website": "https://github.com/AbirHasan2005/GdriveSearcherBot",
+    "success_url": "https://github.com/AbirHasan2005/GdriveSearcherBot",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "API_HASH": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "BOT_TOKEN": {
+            "description": "Get this from @BotFather XD"
+        },
+        "RESULTS_COUNT": {
+            "description": "Number of results to show, 4 is better",
+            "value": "4"
+        },
+        "SUDO_CHATS_ID": {
+            "description": "Put Sudo Chat IDs. Separate with Space."
+        },
+        "DRIVE_NAME": {
+            "description": "Drive Folder Names. Separate with comma(,)"
+        },
+        "DRIVE_ID": {
+            "description": "Gdrive Folder IDs. Separate with Space."
+        },
+        "INDEX_URL": {
+            "description": "Index Links. Separate with Space."
+        }
+    },
+    "stack": "container"
+}
