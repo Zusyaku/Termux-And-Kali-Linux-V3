@@ -1,0 +1,76 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# (c) @CyberW4rriors | @AbirHasan2005
+
+printf "\nCopyright: 2021 - @linux_repo\n"
+echo
+printf "\e[1;96m\n"
+printf "  _     ____   __   _______ ____  _      \n"
+printf " | |   |  _ \  \ \ / /_   _|  _ \| |     \n"
+printf " | |   | |_) |  \ V /  | | | | | | |     \n"
+printf " | |___|  _ <    | |   | | | |_| | |___  \n"
+printf " |_____|_| \_\   |_|   |_| |____/|_____| \n"
+echo
+printf "\n\e[1;92m!!\e[1;93m Welcome to \e[1;96mLR-YTDL \e[1;92m!!\n"
+echo
+printf "[\e[1;93m1\e[1;92m] \e[1;95mAudio Only\e[1;92m\n"
+printf "[\e[1;93m2\e[1;92m] \e[1;95mVideo (360p)\e[1;92m\n"
+printf "[\e[1;93m3\e[1;92m] \e[1;95mVideo (480p)\e[1;92m\n"
+printf "[\e[1;93m4\e[1;92m] \e[1;95mVideo (720p)\e[1;92m\n"
+printf "[\e[1;93m5\e[1;92m] \e[1;95mVideo (1080p)\e[1;92m\n"
+echo
+
+command='-no-mtime -o /data/data/com.termux/files/home/storage/shared/YouTube-DL/%(title)s.%(ext)s -f'
+
+read -p $'\e[1;94mChoose an option:\e[1;96m ' option
+echo
+
+if [ "$option" -eq "1" ]; then
+    printf "\n\n\e[1;92m Trying to Download ...\n"
+    sleep 1
+    echo "$command 140" > ~/.config/youtube-dl/config
+    youtube-dl $1
+    printf "\n\e[1;92m File saved here: \e[1;94mstorage/shared/YouTube-DL \n\e[1;92m"
+    sleep 2
+    exit
+
+elif [ "$option" -eq "2" ]; then
+    printf "\n\n\e[1;92m Trying to Download ...\n"
+    sleep 1
+    echo "$command \"best[height<=360]\"" > ~/.config/youtube-dl/config
+    youtube-dl $1
+    printf "\n\e[1;92m File saved here: \e[1;94mstorage/shared/YouTube-DL \n\e[1;92m"
+    sleep 2
+    exit
+
+elif [ "$option" -eq "3" ]; then
+    printf "\n\n\e[1;92m Trying to Download ...\n"
+    sleep 1
+    echo "$command \"best[height<=480]\"" > ~/.config/youtube-dl/config
+    youtube-dl $1
+    printf "\n\e[1;92m File saved here: \e[1;94mstorage/shared/YouTube-DL \n\e[1;92m"
+    sleep 2
+    exit
+
+elif [ "$option" -eq "4" ]; then
+    printf "\n\n\e[1;92m Trying to Download ...\n"
+    sleep 1
+    echo "$command \"best[height<=720]\"" > ~/.config/youtube-dl/config
+    youtube-dl $1
+    printf "\n\e[1;92m File saved here: \e[1;94mstorage/shared/YouTube-DL \n\e[1;92m"
+    sleep 2
+    exit
+
+elif [ "$option" -eq "5" ]; then
+    printf "\n\n\e[1;92m Trying to Download ...\n"
+    sleep 1
+    echo "$command \"best[height<=1080]\"" > ~/.config/youtube-dl/config
+    youtube-dl $1
+    printf "\n\e[1;92m File saved here: \e[1;94mstorage/shared/YouTube-DL \n\e[1;92m"
+    sleep 2
+    exit
+
+else
+    printf "\n\n\e[1;91m Command Not Found!\n\n"
+    sleep 3
+    exit
+fi

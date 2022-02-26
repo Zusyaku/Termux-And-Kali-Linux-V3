@@ -1,0 +1,50 @@
+{
+    "name": "A Telegram Message Manager Bot by @AbirHasan2005.",
+    "description": "A Telegram Message Manager Bot by @AbirHasan2005. This Bot can delete specific type of messages from Group. I specially use for @linux_repo for Automatically deleting Videos.",
+    "keywords": [
+        "telegram",
+        "messages",
+        "manager",
+        "bot"
+    ],
+    "repository": "https://github.com/AbirHasan2005/Message-Manager-Bot",
+    "website": "https://telegram.dog/AbirHasan2005",
+    "success_url": "https://t.me/MessageManager_Bot",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "API_HASH": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "BOT_TOKEN": {
+            "description": "Get this from @BotFather"
+        },
+        "MONGODB_URI": {
+            "description": "MongoDB URI for Saving Chat Settings. Video Tutorial Here: https://www.youtube.com/watch?v=aXlF80Cn7iU"
+        },
+        "OWNER_ID": {
+            "description": "Your Telegram User ID"
+        },
+        "BOT_USERNAME": {
+            "description": "Your Bot's Username. Without @"
+        },
+        "USER_SESSION_STRING": {
+            "description": "User Client Session String. Use @StringSessionGen_Bot"
+        },
+        "LOG_CHANNEL": {
+            "description": "A Telegram Logs Channel ID for some trace."
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
