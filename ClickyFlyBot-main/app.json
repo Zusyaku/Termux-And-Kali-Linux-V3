@@ -1,0 +1,44 @@
+{
+    "name": "ClickyFlyBot",
+    "description": "Make short link by using ClickyFly API.",
+    "website": "https://t.me/Linux_Repo",
+    "repository": "https://github.com/AbirHasan2005/ClickyFlyBot.git",
+    "keywords": [
+        "telegram",
+        "clickyfly"
+    ],
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Your bot token from @BotFather",
+            "required": true,
+            "value": ""
+        },
+        "API_ID": {
+            "description": "Get this value from https://my.telegram.org",
+            "required": true,
+            "value": ""
+        },
+        "API_HASH": {
+            "description": "Get this value from https://my.telegram.org",
+            "required": true,
+            "value": ""
+        },
+        "API_KEY": {
+            "description": "If you have ClickyFly API than put it. Without it bot will not work.",
+            "required": true,
+            "value": ""
+        }
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
