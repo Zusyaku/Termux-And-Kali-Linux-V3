@@ -1,0 +1,42 @@
+{
+  "name": "ytdltemplet",
+  "version": "0.0.1",
+  "description": "FOLLOW GITHUB RIZXYU YAAAA SAMA FOLLOW FACEBOOK MOONLY",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rizxyu/YOUTUBE-DOWNLOADER.git"
+  },
+  "keywords": [
+    "template youtube downloader",
+    "ytdl",
+    "youtubedownloader"
+  ],
+  "author": "Rizkyadi",
+  "note": "BAPAKKAU SALTO BELAKANG YAHAHHAHA",
+  "bugs": {
+    "url": "https://github.com/Rizxyu/YOUTUBE-DOWNLOADER/issues"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "base-64": "^1.0.0",
+    "base32": "0.0.6",
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "file-type": "^16.4.0",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.1",
+    "mongodb": "^3.6.3",
+    "monk": "^7.3.3",
+    "morgan": "^1.10.0",
+    "needle": "^2.6.0",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
+    "scrape-yt": "^1.4.8",
+    "ssl-express-www": "^3.0.7",
+    "urlencode": "^1.1.0",
+    "ytdl-core": "^4.10.1"
+  }
+}

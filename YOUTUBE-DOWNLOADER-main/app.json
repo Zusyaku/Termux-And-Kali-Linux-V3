@@ -1,0 +1,9 @@
+{
+  "name": "ytdl",
+  "description": "template yt downloader",
+  "repository": "https://github.com/Rizxyu/YOUTUBE-DOWNLOADER",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": [
+    "template"
+  ]
+}
