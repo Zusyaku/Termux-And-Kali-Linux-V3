@@ -1,0 +1,57 @@
+{
+    "name": "Telegram Files Rename Bot",
+    "description": "A Very Simple Telegram Files Rename Bot by @AbirHasan2005",
+    "keywords": [
+        "telegram",
+        "files",
+        "rename",
+        "bot"
+    ],
+    "repository": "https://github.com/AbirHasan2005/Rename-Bot",
+    "website": "https://abirhasan.wtf",
+    "success_url": "https://t.me/AH_RenameBot",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "API_HASH": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "BOT_TOKEN": {
+            "description": "Get this from @BotFather XD"
+        },
+        "MONGODB_URI": {
+            "description": "MongoDB Database URI for Saving UserID for Broadcast. Tutorial: https://www.youtube.com/watch?v=aXlF80Cn7iU"
+        },
+        "LOG_CHANNEL": {
+            "description": "Logs Channel ID for some Tracking XD. Example: -100123456789"
+        },
+        "DOWNLOAD_DIR": {
+            "description": "Files download path. You can keep default. Should not end with '/'",
+            "required": false,
+            "value": "./downloads"
+        },
+        "BROADCAST_AS_COPY": {
+            "description": "Broadcast as Copy or with Forward Tag. Value should be True/False.",
+            "required": false,
+            "value": "False"
+        },
+        "OWNER_ID": {
+            "description": "Bot Owner UserID"
+        }
+    },
+    "buildpacks": [ 
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }, 
+        { 
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}

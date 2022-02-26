@@ -1,0 +1,62 @@
+{
+  "name": "Telegram Group Saver",
+  "description": "A Telegram to make your leech/mirror group copyright free by @AbirHasan2005",
+  "keywords": [
+    "telegram",
+    "group",
+    "files",
+    "store",
+    "userbot",
+    "bot",
+    "save"
+  ],
+  "repository": "https://github.com/AbirHasan2005/Save-Group",
+  "success_url": "https://t.me/joinchat/O9WIjhCGHLo0YmQ0",
+  "website": "https://github.com/AbirHasan2005/Save-Group",
+  "env": {
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org or @TeleORG_Bot",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org or @TeleORG_Bot",
+      "value": ""
+    },
+    "STRING_SESSION": {
+      "description": "Pyrogram user session string, get it from @StringSessionGen_Bot",
+      "value": ""
+    },
+    "FORCE_SUB_CHANNEL": {
+      "description": "Your channel username that you want to forcesub",
+      "value": "",
+      "required": false
+    },
+    "MONGODB_URI": {
+      "description": "Mongo database url get it from https://www.mongodb.com",
+      "value": ""
+    },
+    "BOT_TOKEN": {
+      "description": "telegram bot token, get it from @botfather ",
+      "value": ""
+    },
+    "BLOCKED_EXTENSIONS": {
+      "description": "blocked files extension that will not get deleted.",
+      "value": "srt txt jpg jpeg png torrent html aio pdf"
+    },
+    "DB_CHANNEL_ID": {
+      "description": "Your private channel id for database. In that channel bot will save files.",
+      "value": ""
+    }
+  },
+  "buildpacks": [
+      {
+        "url": "heroku/python"
+      }
+    ],
+  "formation": {
+    "worker": {
+        "quantity": 1,
+        "size": "free"
+    }
+  }
+}
