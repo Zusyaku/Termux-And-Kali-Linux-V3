@@ -1,0 +1,58 @@
+{
+    "name": "A Telegram Footer Bot by @AbirHasan2005.",
+    "description": "A Telegram Bot for adding Footer caption beside main caption of Telegram Channel Messages. Best for Telegram Movie Channels. Made by @AbirHasan2005.",
+    "keywords": [
+        "telegram",
+        "channel",
+        "message",
+        "caption",
+        "footer",
+        "bot"
+    ],
+    "repository": "https://github.com/AbirHasan2005/Footer-Bot",
+    "website": "https://telegram.dog/AbirHasan2005",
+    "success_url": "https://t.me/Footer_Bot",
+    "env": {
+        "API_ID": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "API_HASH": {
+            "description": "Get this value from my.telegram.org or @TeleORG_Bot"
+        },
+        "BOT_TOKEN": {
+            "description": "Get this from @BotFather"
+        },
+        "MONGODB_URI": {
+            "description": "MongoDB URI for Saving Chat Settings. Video Tutorial Here: https://www.youtube.com/watch?v=aXlF80Cn7iU"
+        },
+        "BOT_OWNER": {
+            "description": "Your Telegram User ID for using Admin commands."
+        },
+        "SESSION_NAME": {
+            "description": "A Bot Session Name without Space.",
+            "required": false
+        },
+        "LOG_CHANNEL": {
+            "description": "A Telegram Logs Channel ID for some trace."
+        },
+        "BROADCAST_AS_COPY": {
+            "description": "Broadcast with forward tag or not. Value can be True/False.",
+            "required": false
+        },
+        "UPDATES_CHANNEL": {
+            "description": "Username or Chanenl ID of Updates Channel to do Force Sub.",
+            "required": false
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}

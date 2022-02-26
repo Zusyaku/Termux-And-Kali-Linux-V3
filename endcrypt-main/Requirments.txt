@@ -1,0 +1,6 @@
+Python 3
+Tkinter
+pycryptodomex
+Cryptodome
+AES
+cx_freeze
