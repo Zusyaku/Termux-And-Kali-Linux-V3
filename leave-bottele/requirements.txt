@@ -1,0 +1,10 @@
+telethon
+pyaes
+async_generator
+colorama
+requests
+bs4
+beautifulsoup4
+rsa
+pytz
+func_timeout
