@@ -1,0 +1,22 @@
+https://youtu.be/alOKgbzHLrw
+Copy Token : CixSf9hRAtNb2kBXcq02qN8dU1TXeqdoCQFKYXU50vCHQmUbO
+
+Subscribe Yt FREE TUTORIAL | by Sanz
+
+
+
+Penginstallan :
+
+$ apt update && apt upgrade
+$ pkg install python
+$ pkg install git
+$ git clone https://github.com/Sxp-ID/spam-smsv2
+$ cd spam-smsv2
+$ git pull
+$ pip install -r requirements.txt
+$ python sms.py
+
+Thanks for watching..
+Jangan lupa untuk subrek channel yt admin FREE TUTORIAL
+dan aktifkan notifikasi loncengnya biar tau kalo
+admin upload video baru !
