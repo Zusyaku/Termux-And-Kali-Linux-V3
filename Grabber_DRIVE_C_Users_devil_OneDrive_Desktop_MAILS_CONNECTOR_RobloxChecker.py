@@ -1,0 +1,103 @@
+import time 
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:maanhbang1za")
+print("Account Password:maanhbang1z1")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:lytankhi123456")
+print("Account Password:lytankhi1234")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:ruongso1")
+print("Account Password:ruongso123")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:maanhbangdz")
+print("Account Password:maanhbangsieudz")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:shinosukelol2")
+print("Account Password:27092007@1")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:helloeverybodyinro")
+print("Account Password:voacccaiditmemay")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:BuildABoatBestVN")
+print("Account Password:phatvinh125zz")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                        "-")
+time.sleep(3)
+print(                                                                                                                                        "-")
+
+print("Roblox Checker By Loudest Maside")
+time.sleep(1)
+print("---------CheckerNigga---------")
+print("Account Username:Bestbeeswam2008")
+print("Account Password:0918801810")
+print("Account Verification: No 2FA Enabale")
+print("---------CheckerNigga---------")
+
+print(                                                                                                                                       "-")
+time.sleep(3)
+print(                                                                                                                                       "-")
+
+print("----------------------ENDED----------------------")
