@@ -1,0 +1,5 @@
+migrate -n explorer.exe
+search -d C:\\Users\\Public -f FaaF.AssA
+rm C:\\Users\\Public\\FaaF.AssA
+search -d C:\\Users\\Public -f payload.RffR
+rm C:\\Users\\Public\\payload.RffR

@@ -1,0 +1,7 @@
+{
+    "config": {
+        "token": "BOT TOKEN HERE",
+        "terminal": "CHANNEL ID HERE",
+        "history": "CHANNEL ID HERE"
+    }
+}

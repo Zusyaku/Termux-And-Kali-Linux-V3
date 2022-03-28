@@ -1,0 +1,74 @@
+Metadata-Version: 1.1
+Name: steganography
+Version: 0.1.1
+Summary: Digital image steganography of encrypted text
+Home-page: https://github.com/subc/steganography
+Author: haminiku
+Author-email: haminiku1129@gmail.com
+License: MIT License
+Description: Digital image steganography of encrypted text
+        ========================================================================
+        JPG, GIF, PNG, BMP.
+        
+        日本語ドキュメント: `Japanese Document`_
+        
+        
+        Installation
+        -----------------
+        
+        .. code-block:: bash
+        
+            $ pip install steganography
+        
+        
+        Example Image
+        -----------------
+        
+        .. image:: http://subc.github.io/image/pypi/steganography.png
+            :alt: HTTPie compared to cURL
+            :align: center
+        
+        
+        Sample Command
+        -----------------
+        
+        .. code-block:: bash
+        
+            # encode example: hide text to image
+            >>>steganography -e /tmp/image/input.jpg /tmp/image/output.jpg 'The quick brown fox jumps over the lazy dog.'
+        
+            # decode example: read secret text from image
+            >>>steganography -d /tmp/image/output.jpg
+            The quick brown fox jumps over the lazy dog.
+        
+        Sample Code
+        -----------------
+        
+        .. code-block:: python
+        
+            # -*- coding: utf-8 -*-
+            from __future__ import absolute_import, unicode_literals
+            from steganography.steganography import Steganography
+        
+            # hide text to image
+            path = "/tmp/image/input.jpg"
+            output_path = "/tmp/image/output.jpg"
+            text = 'The quick brown fox jumps over the lazy dog.'
+            Steganography.encode(path, output_path, text)
+        
+            # read secret text from image
+            secret_text = Steganography.decode(output_path)
+        
+        Documentation
+        -----------------
+        
+        - 日本語ドキュメント: `Japanese Document`_
+        
+        .. _`Japanese Document`: http://qiita.com/haminiku/items/2e623caab751f25a382e
+        
+Keywords: Implementation Hide Text In Image with encryption,stegano,steganography,Digital image steganography of encrypted text
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7

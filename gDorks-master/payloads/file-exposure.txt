@@ -1,0 +1,14 @@
+intitle:index.of
+ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini
+ext:sql | ext:dbf | ext:mdb
+ext:log
+ext:bkf | ext:bkp | ext:bak | ext:old | ext:backupext:bkf | ext:bkp | ext:bak | ext:old | ext:backup
+ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv
+db_password filetype:env
+intitle:index of "parent directory"
+intitle:index of name size
+intitle:index.of.admin
+inttitle:index.of inurl:admin
+filetype:log inurl:ws_ftp log
+intitle:index.of "server at"
+intitle:index.of "Apache/1.3.27 Server at"
